@@ -12,12 +12,12 @@ SOOP 계정으로 로그인합니다.
 
 ### BODY
 
-```json
+```js
 //필수 인자
 "required":{
     "szWork": "login",
-    "szUID": 유저 ID (str),
-    "szPassword": 유저 패스워드 (str)
+    "szUID": "유저 ID (str)",
+    "szPassword": "유저 패스워드 (str)"
 },
 
 //선택 인자
@@ -31,7 +31,7 @@ SOOP 계정으로 로그인합니다.
 
 ### 응답코드
 
-```json
+```js
 "RESULTS" : {
     "성공" : 1,
     "등록되지 않은 ID": -1,
@@ -66,15 +66,17 @@ SOOP 계정으로 로그인합니다.
 
 ### 응답 예시
 
-```json
+```js
 // "szType": "json" 일 경우
 // 성공
-"RESULT": 1
+{
+    "RESULT": 1
+}
 
 // 실패
 {
     "RESULT": -33,
-    "szUID": "유저 ID"
+    "szUID": "유저 ID (str)"
 }
 
 // "szType" 없을 경우
@@ -89,7 +91,7 @@ SOOP 계정으로 로그인합니다.
 {
     "CHANNEL" : {
         "RESULT" : -33,
-        "szUid" : "유저ID"
+        "szUid" : "유저 ID (str)"
     }
 }
 ```
@@ -113,10 +115,10 @@ SOOP의 라이브 API는 스트리머의 닉네임을 응답하지 않기 때문
 
 ### PARAMS
 
-```json
+```js
     // 필수 인자
     "required":{
-        "szBjid" : 스트리머의 고유 ID (str)
+        "szBjid" : "스트리머의 고유 ID (str)"
     },
 
     // 선택 인자
@@ -130,7 +132,7 @@ SOOP의 라이브 API는 스트리머의 닉네임을 응답하지 않기 때문
 
 ### RESPONSE
 
-```json
+```js
 {
     "RESULT": 1,
     "DATA": {
