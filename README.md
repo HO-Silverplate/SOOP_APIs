@@ -117,7 +117,7 @@ SOOP 계정으로 로그인합니다.
 ```js
 {
     "RESULT": -33,
-    "szUID": "유저 ID (str)"
+    "szUid": "유저 ID (str)"
 }
 ```
 
