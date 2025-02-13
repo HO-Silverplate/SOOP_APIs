@@ -693,27 +693,27 @@ VOD 고유번호는 VOD 플레이어 URL의 마지막 요소 또는 검색 API�
 해당 API의 응답은 크게 "result" 필드와 "data" 객체로 구성됩니다.  
 "data"필드에 모든 정보가 포함되어 있으므로 "data"객체의 주요 필드만 다루겠습니다.
 
-|           KEY            |                              VALUE                               |     TYPE      |
-| :----------------------: | :--------------------------------------------------------------: | :-----------: |
-|        writer_id         |                       VOD 게시자의 고유ID                        |    string     |
-|          title           |                        VOD의 부분적 제목*                        |    string     |
-|          bj_id           |                 VOD 저작권자(스트리머)의 고유ID                  |    string     |
-|        bbs_title         |                VOD 유형(방송 다시보기, Catch 등)                 |    string     |
-|        full_title        |                         전체 VOD의 제목*                         |    string     |
-|   total_file_duration    |                  전체 VOD의 총 길이(밀리세컨드)                  |    number     |
-|         file_bps         |                      VOD의 최고 비트레이트                       |    number     |
-|     file_resolution      |                        VOD의 최고 해상도                         |    string     |
-|        file_type         |                    [VOD 유형](#931-filetype)                     |    string     |
-|         hashtags         |                  ","로 연결된 일반 태그들(회색)                  |    string     |
-|         view_cnt         |                              조회수                              |    number     |
-|        cate_name         |                            카테고리명                            |    string     |
-|      category_tags       |                    카테고리 태그(파란색) 배열                    | array[string] |
-|         write_tm         |                {방송 시작일시} ~ {방송 종료일시}                 |    string     |
-|    catch_story_scheme    |                         캐치 스토리 URL                          |    string     |
-|     catch_story_idx      |                        캐치 스토리 인덱스                        |    number     |
-|   catch_story_title_no   |                       캐치 스토리 고유번호                       |    number     |
-|          files           |          [VOD 챕터 객체 배열](#932-vod-chapter-object)           | array[object] |
-| subscription_personalcon | [구독 퍼스너콘 객체 배열](#933-구독-퍼스너콘-객체)(tier1, tier2) | array[object] |
+|           KEY            |                               VALUE                                |     TYPE      |
+| :----------------------: | :----------------------------------------------------------------: | :-----------: |
+|        writer_id         |                        VOD 게시자의 고유ID                         |    string     |
+|          title           |                         VOD의 부분적 제목*                         |    string     |
+|          bj_id           |                  VOD 저작권자(스트리머)의 고유ID                   |    string     |
+|        bbs_title         |                 VOD 유형(방송 다시보기, Catch 등)                  |    string     |
+|        full_title        |                          전체 VOD의 제목*                          |    string     |
+|   total_file_duration    |                   전체 VOD의 총 길이(밀리세컨드)                   |    number     |
+|         file_bps         |                       VOD의 최고 비트레이트                        |    number     |
+|     file_resolution      |                         VOD의 최고 해상도                          |    string     |
+|        file_type         |                     [VOD 유형](#931-filetype)                      |    string     |
+|         hashtags         |                   ","로 연결된 일반 태그들(회색)                   |    string     |
+|         view_cnt         |                               조회수                               |    number     |
+|        cate_name         |                             카테고리명                             |    string     |
+|      category_tags       |                     카테고리 태그(파란색) 배열                     | array[string] |
+|         write_tm         |                 {방송 시작일시} ~ {방송 종료일시}                  |    string     |
+|    catch_story_scheme    |                          캐치 스토리 URL                           |    string     |
+|     catch_story_idx      |                         캐치 스토리 인덱스                         |    number     |
+|   catch_story_title_no   |                        캐치 스토리 고유번호                        |    number     |
+|          files           |           [VOD 챕터 객체 배열](#932-vod-chapter-object)            | array[object] |
+| subscription_personalcon | [구독 퍼스너콘 객체 배열](#933-구독-퍼스너콘-객체-2)(tier1, tier2) | array[object] |
 
 
 >*\* 챕터가 나뉜 다시보기를 위해 분리된 것으로 보이지만, 왜인지 같은 값을 리턴함.*
