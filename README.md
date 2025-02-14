@@ -1,7 +1,7 @@
 <!-- omit from toc -->
 # SOOP_APIs
 
-개인적 필요로 인터넷 방송 플랫폼 [숲(SOOP)](https://www.sooplive.co.kr/)의 API를 정리한 문서입니다.  
+개인적 필요로 인터넷 방송 플랫폼 [숲(SOOP)](https://www.sooplive.co.kr/)의 Open API를 정리한 문서입니다.  
 공식 레퍼런스 없이 작성한 문서이기 때문에 오류 또는 누락이 존재할 수 있습니다.
 
 <details>
@@ -719,8 +719,8 @@ VOD 고유번호는 VOD 플레이어 URL의 마지막 요소 또는 검색 API�
 |    catch_story_scheme    |                          캐치 스토리 URL                           |    string     |
 |     catch_story_idx      |                         캐치 스토리 인덱스                         |    number     |
 |   catch_story_title_no   |                        캐치 스토리 고유번호                        |    number     |
-|          files           |           [VOD 챕터 객체 배열](#932-vod-chapter-object)            | array[object] |
-| subscription_personalcon | [구독 퍼스너콘 객체 배열](#933-구독-퍼스너콘-객체-2)(tier1, tier2) | array[object] |
+|          files           |           [VOD 챕터 객체](#932-vod-chapter-object) 배열            | array[object] |
+| subscription_personalcon | [구독 퍼스너콘 객체](#933-구독-퍼스너콘-객체-2) 배열(tier1, tier2) | array[object] |
 
 
 >*\* 챕터가 나뉜 다시보기를 위해 분리된 것으로 보이지만, 왜인지 같은 값을 리턴함.*
