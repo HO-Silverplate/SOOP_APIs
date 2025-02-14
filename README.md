@@ -2,7 +2,7 @@
 # SOOP_APIs
 
 개인적 필요로 인터넷 방송 플랫폼 [숲(SOOP)](https://www.sooplive.co.kr/)의 API를 정리한 문서입니다.  
-레퍼런스 없이 작성한 문서이기 때문에 오류 또는 누락이 존재할 수 있습니다.
+공식 레퍼런스 없이 작성한 문서이기 때문에 오류 또는 누락이 존재할 수 있습니다.
 
 <details>
 <summary><strong>목차</strong></summary>
@@ -54,8 +54,15 @@
     - [9.3.1. FileType](#931-filetype)
     - [9.3.2. VOD Chapter Object](#932-vod-chapter-object)
     - [9.3.3. 구독 퍼스너콘 객체 #2](#933-구독-퍼스너콘-객체-2)
-- [10. 검색](#10-검색)
-- [11. 방송국에서 검색](#11-방송국에서-검색)
+- [10. 통합 검색](#10-통합-검색)
+  - [10.1. PARAMS](#101-params)
+    - [10.1.1. 공통 파라메터](#1011-공통-파라메터)
+    - [10.1.2. 라이브 검색 추가 파라메터](#1012-라이브-검색-추가-파라메터)
+    - [10.1.3. VOD 검색 추가 파라메터](#1013-vod-검색-추가-파라메터)
+    - [10.1.4. 게시글 검색 추가 파라메터](#1014-게시글-검색-추가-파라메터)
+    - [10.1.5. 스트리머 검색 추가 파라메터](#1015-스트리머-검색-추가-파라메터)
+    - [10.1.6. 카테고리 탐색 추가 파라메터](#1016-카테고리-탐색-추가-파라메터)
+- [11. 채널에서 검색](#11-채널에서-검색)
 - [12. 클립](#12-클립)
 - [13. 시그니처 이모티콘](#13-시그니처-이모티콘)
 
@@ -601,12 +608,12 @@ POST https://live.sooplive.co.kr/afreeca/player_live_api.php
 ```
 <!-- omit from toc -->
 ### BODY
-|   KEY   |        VALUE        | NECESSARY |
-| :-----: | :-----------------: | :-------: |
-|  type   |        "aid"        |    YES    |
-|   bno   | 방송 세션 고유 번호 |    YES    |
-|   pwd   |    방송 비밀번호    |    NO     |
-| quality |  품질 프리셋 이름   |    NO     |
+|   KEY   |        VALUE        |  TYPE  | NECESSARY |
+| :-----: | :-----------------: | :----: | :-------: |
+|  type   |        "aid"        | string |    YES    |
+|   bno   | 방송 세션 고유 번호 | number |    YES    |
+|   pwd   |    방송 비밀번호    | string |    NO     |
+| quality |  품질 프리셋 이름   | string |    NO     |
 
 <!-- omit from toc -->
 ### RESPONSE
@@ -622,8 +629,8 @@ POST https://live.sooplive.co.kr/afreeca/player_live_api.php
 
 이렇게 얻어진 HLS 키는 이후 플레이리스트를 요청할 때 파라메터로 쓰입니다.  
   
->**이때, "quality"인자를 전달해야만 원하는 품질의 플레이리스트를 받을 수 있습니다.**  
->**또한 비밀번호가 설정된 방송의 경우 이때 "pwd"인자로 비밀번호를 전달해야 합니다.**
+>**이때, "quality"파라메터를 전달해야만 원하는 품질의 플레이리스트를 받을 수 있습니다.**  
+>**또한 비밀번호가 설정된 방송의 경우 이때 "pwd"파라메터로 비밀번호를 전달해야 합니다.**
 
 
 ### 8.2. 스트림 URL 요청
@@ -682,9 +689,9 @@ VOD의 각종 정보와 HLS 플레이리스트 파일을 얻을 수 있는 API�
 
 ### 9.1. BODY
 
-|   KEY    |    VALUE     | NECESSARY |
-| :------: | :----------: | :-------: |
-| nTitleNo | VOD 고유번호 |    YES    |
+|   KEY    |    VALUE     |  TYPE  | NECESSARY |
+| :------: | :----------: | :----: | :-------: |
+| nTitleNo | VOD 고유번호 | number |    YES    |
 
 VOD 고유번호는 VOD 플레이어 URL의 마지막 요소 또는 검색 API의 응답에서 얻어낼 수 있습니다.
 
@@ -975,19 +982,169 @@ VOD 고유번호는 VOD 플레이어 URL의 마지막 요소 또는 검색 API�
 #### 9.3.3. 구독 퍼스너콘 객체 \#2
 
 ```js
-
 {
     "month": 0,
     "file_name": "{image_url}"
 },
-
 ```
 
-## 10. 검색
+## 10. 통합 검색
 
-TBU
+통합 검색 API는 숲의 탐색 탭을 통해 접근할 수 있는 API입니다.  
+해당 요청의 모드를 변경하여 카테고리, 생방송, VOD 등 덜 정확하지만 다양한 정보를 검색할 수 있습니다.
 
-## 11. 방송국에서 검색
+```
+GET https://sch.sooplive.co.kr/api.php
+```
+
+### 10.1. PARAMS
+
+통합 검색 API는 각 검색 모드에 따라 사용 가능한 파라메터가 달라지니, 이하의 모드별 추가 파라메터를 참고하시기 바랍니다.
+
+#### 10.1.1. 공통 파라메터
+
+|     KEY     |      VALUE       |  TYPE  | NECESSARY |       DEPENDANCY       |
+| :---------: | :--------------: | :----: | :-------: | :--------------------: |
+|   keyword   |      검색어      | string |   NO *    |
+|      m      |    검색 모드     | string |    NO     |
+|   nPageNo   |  페이지 인덱스   | number |    NO     |
+|  nListCnt   | 페이지당 결과 수 | number |    NO     |
+|   szOrder   |  검색 정렬 방식  | string |    NO     |
+| szOrderType |  오름/내림차순   | string |    NO     | "szOrder" : "view_cnt" |
+
+>\* keyword가 주어지지 않아도 API를 호출할 수는 있지만, 항상 [검색결과 없음]()을 반환합니다. (카테고리 탐색 제외) 
+
+<details>
+<summary>검색 모드 접기/펼치기</summary>
+<div markdown="1">
+
+|     TYPE     |  VALUE   |
+| :----------: | :------: |
+|  liveSearch  |  생방송  |
+|  vodSearch   |   VOD    |
+| postsSearch  |  게시글  |
+|   bjSearch   | 스트리머 |
+| categoryList | 카테고리 |
+
+</div>
+</details>
+
+<details>
+<summary>정렬 방식 접기/펼치기</summary>
+
+<div markdown = "1">
+
+|       TYPE       |           VALUE            |           DEPENDANCY           |
+| :--------------: | :------------------------: | :----------------------------: |
+|      score       |           관련성           |
+|     view_cnt     | 조회수 OR 참여자수(라이브) |
+|     reg_date     |       업로드 날짜순        |
+|   broad_start    |         최근 시작          |       "m" : "liveSearch"       |
+|    recomm_cnt    |            UP수            |        "m" : "bjSearch"        |
+|  total_view_cnt  |       누적 참여자수        |        "m" : "bjSearch"        |
+| total_broad_time |       누적 방송시간        |        "m" : "bjSearch"        |
+|   favorite_cnt   |          애청자수          |        "m" : "bjSearch"        |
+|   fanclub_cnt    |          팬클럽수          |        "m" : "bjSearch"        |
+|      prefer      |       선호 카테고리        | "m" : "categoryList", 로그인됨 |
+
+적합하지 않은 유형의 정렬 방식이 파라메터로 주어지면 관련순으로 정렬합니다. (게시글은 조회수순)  
+"view_cnt"로 정렬할 경우, "szOrderType" 파라메터로 "asc" 또는 "desc"를 전달하여 각각 오름차순/내림차순으로 정렬할 수 있습니다.
+
+</div>
+</details>
+
+#### 10.1.2. 라이브 검색 추가 파라메터
+
+|    KEY     |         VALUE          |    TYPE     | NECESSARY |
+| :--------: | :--------------------: | :---------: | :-------: |
+|  isMobile  |  모바일용 응답(추정)   | number[0,1] |    NO     |
+| onlyParent | 중계방 관련 설정(추정) | number[0,1] |    NO     |
+
+> 두 파라메터 모두 응답 데이터에는 영향을 미치지 않았지만 "isMobile" 파라메터는 값에 따라 응답 구조를 바꿀 수 있습니다.
+
+#### 10.1.3. VOD 검색 추가 파라메터
+
+|     KEY     |       VALUE       |  TYPE  | NECESSARY |         DEPENDANCY         |
+| :---------: | :---------------: | :----: | :-------: | :------------------------: |
+| szFileType  |     VOD 유형      | string |    NO     |                            |
+|   szTerm    |     검색 기간     | string |    NO     |                            |
+| szStartDate | 검색 범위 시작일* | string |    NO     | "szTerm" : "period_select" |
+|  szEndDate  | 검색 범위 종료일* | string |    NO     | "szTerm" : "period_select" |
+
+> \* YYYY-MM-DD 형태의 문자열
+
+<details>
+<summary>VOD 유형 범주 접기/펼치기</summary>
+<div markdown = "1">
+
+|  TYPE  |     VALUE     |
+| :----: | :-----------: |
+| REVIEW | 방송 다시보기 |
+| NORMAL |  업로드 VOD   |
+| CATCH  |     캐치      |
+|  CLIP  |     클립      |
+
+</div>
+</details>
+
+<details>
+<summary>검색 기간 범주 접기/펼치기</summary>
+<div markdown = "1">
+
+|     TYPE      |  VALUE   |
+| :-----------: | :------: |
+|      all      |   전체   |
+|     1year     | 최근 1년 |
+|    1month     | 최근 1달 |
+|     1week     | 최근 1주 |
+|     1day      | 최근 1일 |
+| period_select | 직접입력 |
+
+</div>
+</details>
+
+
+#### 10.1.4. 게시글 검색 추가 파라메터
+
+|  KEY   |   VALUE   |  TYPE  | NECESSARY |
+| :----: | :-------: | :----: | :-------: |
+| szTerm | 검색 기간 | string |    NO     |
+
+<details>
+<summary>검색 기간 범주 접기/펼치기</summary>
+<div markdown = "1">
+
+|  TYPE  |  VALUE   |
+| :----: | :------: |
+|  all   |   전체   |
+| 1year  | 최근 1년 |
+| 1month | 최근 1달 |
+| 1week  | 최근 1주 |
+|  1day  | 최근 1일 |
+
+</div>
+</details>
+
+#### 10.1.5. 스트리머 검색 추가 파라메터
+
+>스트리머 검색은 추가 파라메터를 필요로 하지 않습니다.
+
+#### 10.1.6. 카테고리 탐색 추가 파라메터
+
+|    KEY     |           VALUE           |  TYPE  | NECESSARY |
+| :--------: | :-----------------------: | :----: | :-------: |
+| szPlatform | 클라이언트 플랫폼(추정) * | string |    NO     |
+
+카테고리 탐색 시에는 "szKeyword"가 주어지지 않아도 정상적으로 검색이 가능합니다.
+
+>\* 응답 내용은 변하지 않고 응답 구조만 바뀝니다. (라이브 검색의 "isMobile" 파라메터와 유사함)
+
+## 11. 채널에서 검색
+
+채널 검색 API는 스트리머의 채널 페이지에서 상단의 "채널 검색" 필드를 통해 검색할 때 호출되는 API입니다.  
+특정 스트리머의 컨텐츠를 검색할 때 유용하게 사용됩니다.
+
+스트리머의 생방송에서 생성된 클립과 캐치 또한 검색할 수 있으며, 제목, 내용, 작성자 등 어떤 필드를 대상으로 검색할지 또한 지정할 수 있습니다.
 
 TBU
 
