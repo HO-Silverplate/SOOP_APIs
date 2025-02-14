@@ -1,0 +1,43 @@
+{
+    "station_no": 99999999,
+    "bbs_no": 9999999999,
+    "title_no": 99999999,
+    "title_name": "캐치 제목",
+    "user_nick": "제작자 닉네임",
+    "user_id": "제작자 ID",
+    "worker_nick": null,
+    "worker_id": null,
+    "board_type": 105,
+    "profile_image": "//profile.img.sooplive.co.kr/LOGO/{제작자 ID}.substr(0,2)/{제작자 ID}/{제작자 ID}.jpg",
+    "reg_date": "2025-02-11 22:40:15",
+    "reg_date_humans": "23 시간 전",
+    "auth_no": 101,
+    "ucc": {
+        "thumb": "//iflv14.sooplive.co.kr/clip/20250211/705/********-cf97-4dfa-bf43-ba3598fa2b3c/9193705_r.jpg",
+        "ucc_type": "21",
+        "file_type": "CATCH",
+        "total_file_duration": 21000,
+        "flag": "SUCCEED",
+        "grade": 0,
+        "category": 210000,
+        "thumb_type": "SUCCEED",
+        "catchInfo": {
+            "resolution_type": "vertical",
+            "thumb": "http://iflv14.sooplive.co.kr/clip/20250211/705/********-cf97-4dfa-bf43-ba3598fa2b3c/9193705_v.jpg"
+        }
+    },
+    "count": {
+        "read_cnt": 19794
+    },
+    "is_vod_pin": false,
+    "is_owner": false,
+    "badge": {
+        "user_id": "{제작자 ID}",
+        "bj_id": "{스트리머 ID}",
+        "is_manager": 0,
+        "is_top_fan": 0,
+        "is_fan": 1,
+        "is_subscribe": 0,
+        "is_support": 0
+    }
+}

@@ -1,0 +1,53 @@
+{
+    "original_reg_user_id": "{VOD 업로더 ID}", // 플레이리스트의 제일 첫 번째 VOD를 업로드한 유저
+    "title_no": "999999999", // VOD의 고유 번호
+    "view_cnt": "2", // 조회수
+    "original_bj": "{BJID}", // 첫 번째 VOD의 스트리머 ID
+    "auth": "OPEN_ALL",
+    "title": "1",
+    "station_no": "15612499",
+    "content": "",
+    "unigram_user_nick": "{USERNICK}", // 플레이리스트 제작자 닉네임
+    "thumbnail_path": "http://videoimg.sooplive.co.kr/php/SnapshotLoad.php?...",
+    "file_type": "PLAYLIST",
+    "bbs_no": "99999999",
+    "list_no": "999999",
+    "memo_cnt": "0",
+    "playlist_cnt": "11", // 플레이리스트에 포함된 VOD의 개수
+    "original_user_nick": "{BJNICK}", // 첫 번째 VOD의 스트리머 닉네임
+    "user_nick": "{USERNICK}",
+    "rookie": false,
+    "vod_view_cnt": "2",
+    "url": "https://vod.afreecatv.com/player/148793675/playlist/857619",
+    "reg_date": "2025-02-11 19:00:57",
+    "unigram_title": "1",
+    "user_id": "{USERID}",
+    "grade": "0",
+    "ucc_type": "0",
+    "ppv": false,
+    "_update_date_time": "2025-02-11T22:27:11",
+    "category": "00210000",
+    "unigram_original_user_nick": "{BJNICK}",
+    "thumb_type": "SUCCEED",
+    "config": {
+        "share_yn": "Y",
+        "display": "Y",
+        "vod_add_date": "2025-02-11 22:27:05"
+    },
+    "fan_flag": 0,
+    "subs_flag": 0,
+    "type": "PLAYLIST",
+    "b_title": null,
+    "timestamp": 1739268057,
+    "webp_path": "",
+    "vertical_thumbnail_path": null,
+    "vertical_webp_path": "",
+    "vod_category": "",
+    "broad_date": "",
+    "category_tags": [],
+    "auto_hashtags": [],
+    "hash_tags": [],
+    "title_history": [],
+    "favorite_flag": 0,
+    "use_vertical_thumbnail": false
+}
