@@ -55,13 +55,21 @@
     - [9.3.2. VOD Chapter Object](#932-vod-chapter-object)
     - [9.3.3. 구독 퍼스너콘 객체 #2](#933-구독-퍼스너콘-객체-2)
 - [10. 통합 검색](#10-통합-검색)
-  - [10.1. PARAMS](#101-params)
-    - [10.1.1. 공통 파라메터](#1011-공통-파라메터)
-    - [10.1.2. 라이브 검색 추가 파라메터](#1012-라이브-검색-추가-파라메터)
-    - [10.1.3. VOD 검색 추가 파라메터](#1013-vod-검색-추가-파라메터)
-    - [10.1.4. 게시글 검색 추가 파라메터](#1014-게시글-검색-추가-파라메터)
-    - [10.1.5. 스트리머 검색 추가 파라메터](#1015-스트리머-검색-추가-파라메터)
-    - [10.1.6. 카테고리 탐색 추가 파라메터](#1016-카테고리-탐색-추가-파라메터)
+  - [10.1. 공통 파라메터](#101-공통-파라메터)
+  - [10.2. 라이브 검색](#102-라이브-검색)
+    - [10.2.1. 추가 파라메터](#1021-추가-파라메터)
+    - [10.2.2. RESPONSE](#1022-response)
+  - [10.3. VOD 검색](#103-vod-검색)
+    - [10.3.1. 추가 파라메터](#1031-추가-파라메터)
+    - [10.3.2. RESPONSE](#1032-response)
+  - [10.4. 게시글 검색](#104-게시글-검색)
+    - [10.4.1. 추가 파라메터](#1041-추가-파라메터)
+    - [10.4.2. RESPONSE](#1042-response)
+  - [10.5. 스트리머 검색](#105-스트리머-검색)
+    - [10.5.1. RESPONSE](#1051-response)
+  - [10.6. 카테고리 탐색](#106-카테고리-탐색)
+    - [10.6.1. 추가 파라메터](#1061-추가-파라메터)
+    - [10.6.2. RESPONSE](#1062-response)
 - [11. 채널에서 검색](#11-채널에서-검색)
 - [12. 클립](#12-클립)
 - [13. 시그니처 이모티콘](#13-시그니처-이모티콘)
@@ -408,7 +416,7 @@ POST https://live.sooplive.co.kr/afreeca/player_live_api.php
 >*\*\*\*\* [7.3.2. 구독 퍼스너콘 객체](#732-구독-퍼스너콘-객체) 참고*
 
 <details>
-<summary> <i>전체 응답 객체 보기</i> </summary>
+<summary>전체 응답 객체 보기</summary>
 <div markdown="1">
 
 ```js
@@ -726,7 +734,7 @@ VOD 고유번호는 VOD 플레이어 URL의 마지막 요소 또는 검색 API�
 >*\* 챕터가 나뉜 다시보기를 위해 분리된 것으로 보이지만, 왜인지 같은 값을 리턴함.*
 
 <details>
-<summary><i>전체 응답 객체 보기</i></summary>
+<summary>전체 응답 객체 보기</summary>
 <div markdown="1">
 
 ```js
@@ -750,7 +758,7 @@ VOD 고유번호는 VOD 플레이어 URL의 마지막 요소 또는 검색 API�
         "writer_nick": "{게시자 닉네임}",
         "content": "  ",
         "grade": 0,
-        "thumb": "{thumbnai_URL}",
+        "thumb": "{THUMBNAIL_URL}",
         "flag": "SUCCEED",
         "ucc_type": "21",
         "total_file_duration": 6302250,
@@ -913,7 +921,7 @@ VOD 고유번호는 VOD 플레이어 URL의 마지막 요소 또는 검색 API�
 >\* 다시보기가 잘릴 경우, 챕터 번호들이 연속적이지 않을 수 있습니다.
 
 <details>
-<summary><i>전체 응답 객체 보기</i></summary>
+<summary>전체 응답 객체 보기</summary>
 <div markdown="1">
 
 ```js
@@ -976,6 +984,7 @@ VOD 고유번호는 VOD 플레이어 URL의 마지막 요소 또는 검색 API�
     "chat": "https://videoimg.sooplive.co.kr/php/ChatLoadSplit.php?rowKey=20250212_********_281288464_1_c"
 },
 ```
+
 </div>
 </details>
 
@@ -997,12 +1006,10 @@ VOD 고유번호는 VOD 플레이어 URL의 마지막 요소 또는 검색 API�
 GET https://sch.sooplive.co.kr/api.php
 ```
 
-### 10.1. PARAMS
+### 10.1. 공통 파라메터
 
 통합 검색 API는 각 검색 모드에 따라 사용 가능한 파라메터가 달라지니, 이하의 모드별 추가 파라메터를 참고하시기 바랍니다.
 
-#### 10.1.1. 공통 파라메터
----
 
 |     KEY     |      VALUE       |  TYPE  | NECESSARY |       DEPENDANCY       |
 | :---------: | :--------------: | :----: | :-------: | :--------------------: |
@@ -1054,8 +1061,9 @@ GET https://sch.sooplive.co.kr/api.php
 </div>
 </details>
 
-#### 10.1.2. 라이브 검색 추가 파라메터
----
+### 10.2. 라이브 검색
+
+#### 10.2.1. 추가 파라메터
 
 |    KEY     |         VALUE          |    TYPE     | NECESSARY |
 | :--------: | :--------------------: | :---------: | :-------: |
@@ -1064,8 +1072,147 @@ GET https://sch.sooplive.co.kr/api.php
 
 > 두 파라메터 모두 응답 데이터에는 영향을 미치지 않았지만 "isMobile" 파라메터는 값에 따라 응답 구조를 바꿀 수 있습니다.
 
-#### 10.1.3. VOD 검색 추가 파라메터
----
+#### 10.2.2. RESPONSE
+
+응답의 "REAL_BROAD"필드로 생방송 정보 객체의 배열이 전달됩니다.
+
+|       KEY       |               VALUE                |  TYPE  |
+| :-------------: | :--------------------------------: | :----: |
+|   broad_title   |             방송 제목              | string |
+|    broad_img    |          방송 썸네일 URL           | string |
+| broad_cate_name |         현재 방송 카테고리         | string |
+|       url       |            라이브 주소             | string |
+|   broad_start   | 방송 시작일시(YYYY-MM-DD HH:MM:SS) | string |
+|     user_id     |            스트리머 ID             | string |
+|    user_nick    |          스트리머 닉네임           | string |
+|    broad_no     |          방송의 식별번호           | string |
+|   pc_view_cnt   |            PC 시청자수             | string |
+| mobile_view_cnt |          모바일 시청자수           | string |
+| total_view_cnt  |            총 시청자수             | string |
+
+
+<details>
+<summary>응답 예시 접기/펼치기</summary>
+<div markdown ="1">
+
+```js
+{
+    "RESULT": "1",
+    "HAS_MORE_LIST": true,
+    "TOTAL_CNT": "846",
+    "processTm": 57799,
+    "t": "json",
+    "logic": "",
+    "charset": "UTF-8",
+    "REAL_BROAD": [
+        {
+            "parent_broad_no": "0",
+            "is_nr": "",
+            "broad_title": "{TITLE}",
+            "broad_img": "https://liveimg.sooplive.co.kr/m/{BNO}",
+            "banner_href": "",
+            "b_broad_title": "{TITLE}",
+            "rank": "-",
+            "relay_limit": "",
+            "station_name": "{STNAME}",
+            "m_current_view_cnt": "1712",
+            "broad_cate_name": "{CATEGORY}",
+            "broad_bps": "8000",
+            "best_grade": "1",
+            "is_password": "N",
+            "club_name": "",
+            "broad_start": "2025-02-14 14:59:31",
+            "user_id": "{BJID}",
+            "broad_no": "{BNO}",
+            "club_id": "",
+            "_update_date_time": "2025-02-15T00:13:32",
+            "broad_notice": "",
+            "layer_flag": "",
+            "pc_view_cnt": "2240",
+            "broad_addbtn": "",
+            "total_view_cnt": "3952",
+            "af_tags": [
+                {
+                    "af_tag": "{tag1}",
+                    "af_score": "0.001"
+                },
+                {
+                    "af_tag": "{tag2}",
+                    "af_score": "0.0047"
+                },
+                {
+                    "af_tag": "{tag3}",
+                    "af_score": "0.0104"
+                },
+                {
+                    "af_tag": "{tag4}",
+                    "af_score": "0.0112"
+                },
+                {
+                    "af_tag": "{tag5}",
+                    "af_score": "0.0215"
+                },
+                {
+                    "af_tag": "{tag6}",
+                    "af_score": "0.0396"
+                }
+            ],
+            "asp_code": "0",
+            "broad_resolution": "1920x1080",
+            "visit_type": "1",
+            "banner_flag": "",
+            "layer_url": "",
+            "auto_hash_tags": [],
+            "broad_horizontal": "1",
+            "broad_cate_no": "40066",
+            "is_pb": "0",
+            "banner_url": "",
+            "standard_broad_cate_name": "{CATEGORY}",
+            "broad_type": "30",
+            "hash_tags": [
+                "{HASHTAG}"
+            ],
+            "broad_memo": "",
+            "allowed_view_cnt": "100000",
+            "relay_total_current_view_cnt": "0",
+            "user_nick": "{BJNICK}",
+            "url": "http://afreecatv.com/{BJID}",
+            "broad_resolution_n": "2073600",
+            "broad_grade": "0",
+            "service_type": "0",
+            "rcount": "",
+            "sn_url": "https://liveimg.sooplive.co.kr/m/{BJID}",
+            "is_wp": "-1",
+            "broad_bps_n": "8000",
+            "current_view_cnt": "2240",
+            "logo_flag": "Y",
+            "relay_m_total_current_view_cnt": "0",
+            "bj_gender": "-1",
+            "fan_flag": "0",
+            "subs_flag": "0",
+            "logic": "",
+            "sort": "0.005859203/3952",
+            "mobile_view_cnt": "1712",
+            "orderCnt": "1",
+            "category_tags": [
+                "{CATEGORY}"
+            ],
+            "auto_hashtags": [],
+            "favorite_flag": "0",
+            "visit_broad_type": 1
+        },
+    ],
+    "SCRAP_BROAD": [],
+    "from": "new"
+}
+```
+
+</div>
+</details>
+
+### 10.3. VOD 검색
+
+#### 10.3.1. 추가 파라메터
 
 |     KEY     |       VALUE       |  TYPE  | NECESSARY |         DEPENDANCY         |
 | :---------: | :---------------: | :----: | :-------: | :------------------------: |
@@ -1106,8 +1253,330 @@ GET https://sch.sooplive.co.kr/api.php
 </div>
 </details>
 
-#### 10.1.4. 게시글 검색 추가 파라메터
----
+#### 10.3.2. RESPONSE
+
+응답의 "DATA" 필드로 VOD 정보 객체의 배열이 전달됩니다.
+
+
+|         KEY          |              VALUE               |     TYPE      |
+| :------------------: | :------------------------------: | :-----------: |
+|       title_no       |           VOD 식별번호           |    string     |
+|       view_cnt       |              조회수              |    string     |
+|  vod_category_name   |         메인 카테고리명          |    string     |
+|      file_type       |             VOD 유형             |    string     |
+|       reg_date       | 업로드 일시(YYYY-MM-DD HH:MM:SS) |    string     |
+|       user_id        |          VOD 제작자 ID           |    string     |
+|      user_nick       |        VOD 제작자 닉네임         |    string     |
+|     original_bj      |   VOD 저작권자(스트리머)의 ID    |    string     |
+|    original_nick     | VOD 저작권자(스트리머)의 닉네임  |    string     |
+| original_reg_user_id |        출처 VOD 제작자 ID        |    string     |
+|     org_title_no     |        출처 VOD 식별번호         |    string     |
+|        title         |             VOD 제목             |    string     |
+|       duration       |        VOD 길이(HH:MM:SS)        |    string     |
+|    thumbnail_path    |            썸네일 URL            |    string     |
+|     vod_duration     |           VOD 길이(초)           |    string     |
+|         url          |         VOD 플레이어 URL         |    string     |
+|    title_history     |        방제 변경 타임라인        | array[object] |
+
+<details>
+<summary>타임라인 정보 객체 접기/펼치기</summary>
+
+<div markdown="1">
+
+|       KEY       |        VALUE        |  TYPE  |
+| :-------------: | :-----------------: | :----: |
+|      title      |        제목         | string |
+|    change_tm    |  변경 시점 (Epoch)  | number |
+| change_position | 변경 시점(HH:MM:SS) | string |
+|  change_second  |    변경 시점(초)    | number |
+
+```js
+{
+    "view_cnt": 0,
+    "unigram_title": "{TITLE}",
+    "change_tm": 1739437514,
+    "ngram_title": "{TITLE}",
+    "change_position": "02:12:22",
+    "title": "{TITLE}",
+    "change_second": 7942
+}
+```
+
+</div>
+</details>
+
+<details>
+<summary>VOD 정보 객체 예시 접기/펼치기</summary>
+
+```js
+{
+    "title_no": "{TITLE_NO}",
+    "view_cnt": "9628",
+    "auth": "OPEN_ALL",
+    "vod_category_name": "{CATEGORY}",
+    "station_no": "999999999",
+    "file_resolution": "1920x1080",
+    "file_type": "REVIEW",
+    "bbs_no": "99999999",
+    "memo_cnt": "0",
+    "mobile_thumbnail_path": "http://videoimg.sooplive.co.kr/php/SnapshotLoad.php?rowKey=...",
+    "station_name": "{ST_NAME}",
+    "recomm_cnt": "1",
+    "standard_vod_category_name": "{CATEGORY}",
+    "hotclip_yn": "0",
+    "vod_view_cnt": "175",
+    "encoding_type": "2",
+    "auto_hashtags": [],
+    "reg_date": "2025-02-14 11:04:14",
+    "user_id": "{USERID}",
+    "grade": "0",
+    "_update_date_time": "2025-02-15T00:24:44",
+    "status": "1",
+    "title": "{TITLE}",
+    "content": "  ",
+    "duration": "19:11:12",
+    "vod_category": "00040001",
+    "unigram_user_nick": "{BJNICK}",
+    "thumbnail_path": "http://videoimg.sooplive.co.kr/php/SnapshotLoad.php?rowKey=...",
+    "category_id": "",
+    "hash_tags": [],
+    "aftv_score": "0",
+    "b_title": "{TITLE}",
+    "user_nick": "{BJNICK}",
+    "vod_duration": "69072738",
+    "rookie": false,
+    "url": "https://vod.afreecatv.com/player/{TITLE_NO}",
+    "video_type": "ucc",
+    "unigram_title": "{TITLE}",
+    "ucc_type": "30",
+    "ppv": false,
+    "category": "00010000",
+    "title_history": [
+        {
+            "view_cnt": 0,
+            "unigram_title": "{TITLE_1}",
+            "change_tm": 1739437514,
+            "ngram_title": "{TITLE_1}",
+            "change_position": "02:12:22",
+            "title": "{TITLE_1}",
+            "change_second": 7942
+        },
+        {
+            "view_cnt": 0,
+            "unigram_title": "{TITLE_2}",
+            "change_tm": 1739438351,
+            "ngram_title": "{TITLE_2}",
+            "change_position": "02:26:19",
+            "title": "{TITLE_2}",
+            "change_second": 8779
+        },
+        {
+            "view_cnt": 0,
+            "unigram_title": "{TITLE_3}",
+            "change_tm": 1739441067,
+            "ngram_title": "{TITLE_3}",
+            "change_position": "03:11:35",
+            "title": "{TITLE_3}",
+            "change_second": 11495
+        },
+        {
+            "view_cnt": 0,
+            "unigram_title": "{TITLE_4}",
+            "change_tm": 1739441105,
+            "ngram_title": "{TITLE_4}",
+            "change_position": "03:12:13",
+            "title": "{TITLE_4}",
+            "change_second": 11533
+        },
+        {
+            "view_cnt": 0,
+            "unigram_title": "{TITLE_5}",
+            "change_tm": 1739463363,
+            "ngram_title": "{TITLE_5}",
+            "change_position": "09:23:08",
+            "title": "{TITLE_5}",
+            "change_second": 33788
+        },
+        {
+            "view_cnt": 0,
+            "unigram_title": "{TITLE_6}",
+            "change_tm": 1739481534,
+            "ngram_title": "{TITLE_6}",
+            "change_position": "14:25:58",
+            "title": "{TITLE_6}",
+            "change_second": 51958
+        }
+    ],
+    "fan_flag": 0,
+    "subs_flag": 0,
+    "type": "REVIEW",
+    "timestamp": 1739498654,
+    "webp_path": "",
+    "vertical_thumbnail_path": null,
+    "vertical_webp_path": "",
+    "broad_date": "",
+    "original_user_nick": "",
+    "original_reg_user_id": "",
+    "original_bj": "",
+    "category_tags": [
+        "{CATEGORY}"
+    ],
+    "favorite_flag": 0,
+    "use_vertical_thumbnail": false
+}
+```
+
+</details>
+
+<details>
+<summary>전체 응답 예시 접기/펼치기</summary>
+<div markdown="1">
+
+```js
+{
+    "RESULT": 1,
+    "TOTAL_CNT": 10000,
+    "HAS_MORE_LIST": true,
+    "FILETYPE_CNT": null,
+    "processTm": 0,
+    "t": "json",
+    "charset": "UTF-8",
+    "DATA": [
+        {
+            "title_no": "{TITLE_NO}",
+            "view_cnt": "9628",
+            "auth": "OPEN_ALL",
+            "vod_category_name": "{CATEGORY}",
+            "station_no": "999999999",
+            "file_resolution": "1920x1080",
+            "file_type": "REVIEW",
+            "bbs_no": "99999999",
+            "memo_cnt": "0",
+            "mobile_thumbnail_path": "http://videoimg.sooplive.co.kr/php/SnapshotLoad.php?rowKey=...",
+            "station_name": "{ST_NAME}",
+            "recomm_cnt": "1",
+            "standard_vod_category_name": "{CATEGORY}",
+            "hotclip_yn": "0",
+            "vod_view_cnt": "175",
+            "encoding_type": "2",
+            "auto_hashtags": [],
+            "reg_date": "2025-02-14 11:04:14",
+            "user_id": "{USERID}",
+            "grade": "0",
+            "_update_date_time": "2025-02-15T00:24:44",
+            "status": "1",
+            "title": "{TITLE}",
+            "content": "  ",
+            "duration": "19:11:12",
+            "vod_category": "00040001",
+            "unigram_user_nick": "{BJNICK}",
+            "thumbnail_path": "http://videoimg.sooplive.co.kr/php/SnapshotLoad.php?rowKey=...",
+            "category_id": "",
+            "hash_tags": [],
+            "aftv_score": "0",
+            "b_title": "{TITLE}",
+            "user_nick": "{BJNICK}",
+            "vod_duration": "69072738",
+            "rookie": false,
+            "url": "https://vod.afreecatv.com/player/{TITLE_NO}",
+            "video_type": "ucc",
+            "unigram_title": "{TITLE}",
+            "ucc_type": "30",
+            "ppv": false,
+            "category": "00010000",
+            "title_history": [
+                {
+                    "view_cnt": 0,
+                    "unigram_title": "{TITLE_1}",
+                    "change_tm": 1739437514,
+                    "ngram_title": "{TITLE_1}",
+                    "change_position": "02:12:22",
+                    "title": "{TITLE_1}",
+                    "change_second": 7942
+                },
+                {
+                    "view_cnt": 0,
+                    "unigram_title": "{TITLE_2}",
+                    "change_tm": 1739438351,
+                    "ngram_title": "{TITLE_2}",
+                    "change_position": "02:26:19",
+                    "title": "{TITLE_2}",
+                    "change_second": 8779
+                },
+                {
+                    "view_cnt": 0,
+                    "unigram_title": "{TITLE_3}",
+                    "change_tm": 1739441067,
+                    "ngram_title": "{TITLE_3}",
+                    "change_position": "03:11:35",
+                    "title": "{TITLE_3}",
+                    "change_second": 11495
+                },
+                {
+                    "view_cnt": 0,
+                    "unigram_title": "{TITLE_4}",
+                    "change_tm": 1739441105,
+                    "ngram_title": "{TITLE_4}",
+                    "change_position": "03:12:13",
+                    "title": "{TITLE_4}",
+                    "change_second": 11533
+                },
+                {
+                    "view_cnt": 0,
+                    "unigram_title": "{TITLE_5}",
+                    "change_tm": 1739463363,
+                    "ngram_title": "{TITLE_5}",
+                    "change_position": "09:23:08",
+                    "title": "{TITLE_5}",
+                    "change_second": 33788
+                },
+                {
+                    "view_cnt": 0,
+                    "unigram_title": "{TITLE_6}",
+                    "change_tm": 1739481534,
+                    "ngram_title": "{TITLE_6}",
+                    "change_position": "14:25:58",
+                    "title": "{TITLE_6}",
+                    "change_second": 51958
+                }
+            ],
+            "fan_flag": 0,
+            "subs_flag": 0,
+            "type": "REVIEW",
+            "timestamp": 1739498654,
+            "webp_path": "",
+            "vertical_thumbnail_path": null,
+            "vertical_webp_path": "",
+            "broad_date": "",
+            "original_user_nick": "",
+            "original_reg_user_id": "",
+            "original_bj": "",
+            "category_tags": [
+                "{CATEGORY}"
+            ],
+            "favorite_flag": 0,
+            "use_vertical_thumbnail": false
+        },
+    ],
+    "RELATED_DATA": {
+        "VOD": [],
+        "BJ": []
+    },
+    "LATEST_DATA": [],
+    "RECOMMEND_DATA": [],
+    "CATCH_DATA": [],
+    "CATCH_STORY_DATA": [],
+    "WORD": "{KEYWORD}",
+    "origin_word": "{KEYWORD}"
+}
+```
+
+</div>
+</details>
+
+### 10.4. 게시글 검색
+
+#### 10.4.1. 추가 파라메터
 
 |  KEY   |   VALUE   |  TYPE  | NECESSARY |
 | :----: | :-------: | :----: | :-------: |
@@ -1128,21 +1597,207 @@ GET https://sch.sooplive.co.kr/api.php
 </div>
 </details>
 
-#### 10.1.5. 스트리머 검색 추가 파라메터
----
+#### 10.4.2. RESPONSE
 
->스트리머 검색은 추가 파라메터를 필요로 하지 않습니다.
+응답의 "DATA" 필드로 게시물 정보 객체의 배열이 전달됩니다.
 
-#### 10.1.6. 카테고리 탐색 추가 파라메터
----
+|       KEY       |                VALUE                 |  TYPE  |
+| :-------------: | :----------------------------------: | :----: |
+|    title_no     |           게시글 고유번호            | number |
+| station_user_id |             스트리머 ID              | string |
+|    user_nick    |           스트리머 닉네임            | string |
+|    reg_date     |   업로드 일시(YYYY-MM-DD HH:MM:SS)   | string |
+|     content     |                 본문                 | string |
+|    thumbnail    | 썸네일 URL (없다면 빈 문자열로 대체) | string |
+|      title      |                 제목                 | string |
+|    view_cnt     |                조회수                | number |
+|   recomm_cnt    |                 UP수                 | number |
+|    memo_cnt     |               댓글 수                | number |
+|  station_logo   |     스트리머의 프로필 이미지 URL     | string |
+|       url       |          해당 게시물의 URL           | string |
+
+<details>
+<summary>전체 응답 예시 접기/펼치기</summary>
+<div markdown="1">
+
+```js
+{
+    "RESULT": 1,
+    "TOTAL_CNT": 10000,
+    "processTm": 0,
+    "t": "json",
+    "charset": "UTF-8",
+    "DATA": [
+        {
+            "station_name": "{STNAME}",
+            "title_no": {TITLE_NO},
+            "photo_cnt": "0",
+            "station_user_id": "{BJID}",
+            "station_no": {STATION_NO},
+            "user_nick": "{BJNICK}",
+            "content": "{CONTENT}",
+            "reg_date": "2025-02-16 16:28:35",
+            "user_id": "{BJID}",
+            "bbs_no": 90309005,
+            "favorite_flag": 0,
+            "thumbnail": "",
+            "title": "{TITLE}",
+            "view_cnt": 12,
+            "recomm_cnt": 3,
+            "memo_cnt": 0,
+            "station_logo": "https://stimg.sooplive.co.kr/LOGO/{BJID.substr(0,2)}/{BJID}/{BJID}.jpg",
+            "url": "https://ch.sooplive.co.kr/{BJID}/post/{TITLE_NO}"
+        }, ...
+    ],
+    "WORD": "{KEYWORD}",
+    "origin_word": "{KEYWORD}"
+}
+```
+
+</div>
+</details>
+
+### 10.5. 스트리머 검색
+
+스트리머 검색은 추가 파라메터를 필요로 하지 않습니다.
+
+#### 10.5.1. RESPONSE
+
+|        KEY        |               VALUE               |     TYPE      |
+| :---------------: | :-------------------------------: | :-----------: |
+|   station_logo    |    스트리머 프로필 이미지 URL     |    string     |
+|     user_nick     |          스트리머 닉네임          |    string     |
+|      user_id      |            스트리머 ID            |    string     |
+|    station_no     |            방송국 번호            |    string     |
+| recent_broad_date | 최근방송일시(YYYY-MM-DD HH:MM:SS) |    string     |
+|  total_view_cnt   |           누적 시청자수           |    string     |
+|   favorite_cnt    |             애청자 수             |    string     |
+| total_broad_time  |          총 방송시간(시)          |    number     |
+|      synonym      |         연관 검색어(추정)         | array[string] |
+|      medals       |               메달                | array[string] |
+|     medal_url     |       대표 메달 이미지 URL        |    string     |
+
+<details>
+<summary>전체 응답 예시 접기/펼치기</summary>
+<div markdown="1">
+
+```js
+{
+    "RESULT": 1,
+    "TOTAL_CNT": 1548,
+    "DATA": [
+        {
+            "station_logo": "https://profile.img.sooplive.co.kr/LOGO/{BJID.substr(0,2)}/{BJID}/{BJID}.jpg",
+            "total_view_cnt": "35481894",
+            "station_no": "{STATION_NO}",
+            "club_yn": "N",
+            "recent_broad_date": "2025-02-15 19:09:27",
+            "station_title": "",
+            "favorite_cnt": "193129",
+            "station_name": "{STNAME}",
+            "user_nick": "{BJNICK}",
+            "rookie": false,
+            "ngram_station_name": "{STNAME}",
+            "ngram_station_title": "",
+            "user_id": "{BJID}",
+            "block_state": "A",
+            "grade": "1",
+            "_update_date_time": "2025-02-16T16:36:12",
+            "ranking": "4",
+            "fanclub_cnt": "26889",
+            "recent_broad_date_time": "2025-02-15 19:09:27",
+            "total_broad_time": 1982,
+            "born_year": "0",
+            "profile_img_file": "",
+            "profile_img_flag": false,
+            "synonym": [
+                "{SYNONYMS}"
+            ],
+            "profile_img_height": "0",
+            "profile_img_width": "0",
+            "qna": [],
+            "user_age": "",
+            "career_award": [],
+            "profile_expose": true,
+            "medals": [
+                "BEST_STREAMER",
+                "PARTNER_STREAMER"
+            ],
+            "medal_url": "https://res.sooplive.co.kr/images/medal/simple/partner_streamer.png",
+            "fan_flag": 0,
+            "subs_flag": 0,
+            "best_streamer": 1
+        }
+    ],
+    "RECOMMEND_DATA": [],
+    "WORD": "{KEYWORD}",
+    "t": "json",
+    "charset": "UTF-8",
+    "version": "2.0"
+}
+```
+
+</div>
+</details>
+
+### 10.6. 카테고리 탐색
+
+#### 10.6.1. 추가 파라메터
 
 |    KEY     |           VALUE           |  TYPE  | NECESSARY |
 | :--------: | :-----------------------: | :----: | :-------: |
 | szPlatform | 클라이언트 플랫폼(추정) * | string |    NO     |
+>\* 응답 내용은 변하지 않고 응답 구조만 바뀝니다. (라이브 검색의 "isMobile" 파라메터와 유사함)
 
 카테고리 탐색 시에는 "szKeyword"가 주어지지 않아도 정상적으로 검색이 가능합니다.
 
->\* 응답 내용은 변하지 않고 응답 구조만 바뀝니다. (라이브 검색의 "isMobile" 파라메터와 유사함)
+#### 10.6.2. RESPONSE
+
+"data"객체의 "list"필드로 카테고리 정보 객체의 배열을 반환합니다.
+
+|      KEY      |                  VALUE                   |     TYPE      |
+| :-----------: | :--------------------------------------: | :-----------: |
+|  category_no  |            카테고리 고유번호             |    string     |
+| category_name |                카테고리명                |    string     |
+|   view_cnt    |  현재 해당 카테고리 방송의 총 시청자수   |    number     |
+|  fixed_tags   | 카테고리의 상위 범주(포함된 것으로 간주) | array[string] |
+|   cate_img    |           카테고리 이미지 URL            |    string     |
+
+<details>
+<summary>전체 응답 예시 접기/펼치기</summary>
+<div markdown="1">
+
+```js
+{
+    "result": 1,
+    "data": {
+        "is_more": true,
+        "offset": 2,
+        "list": [
+            {
+                "category_no": "00720000",
+                "category_name": "LCK",
+                "view_cnt": 98554,
+                "fixed_tags": [
+                    "MOBA"
+                ],
+                "cate_img": "https://admin.img.sooplive.co.kr/category_img/2024/10/15/1707670d9156ca223.jpg"
+            },
+            {
+                "category_no": "00040001",
+                "category_name": "스타크래프트",
+                "view_cnt": 25248,
+                "fixed_tags": [
+                    "RTS"
+                ],
+                "cate_img": "https://admin.img.sooplive.co.kr/category_img/2024/10/15/3568670d900e5fe3c.jpg"
+            },
+        ]
+    }
+}
+```
+</div>
+</details>
 
 ## 11. 채널에서 검색
 
