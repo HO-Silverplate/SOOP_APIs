@@ -402,7 +402,7 @@ POST https://live.sooplive.co.kr/afreeca/player_live_api.php
 |    S1440P     |  1440p 방송 적용여부   |   number (-1 or 1)    |
 | CATEGORY_TAGS | 카테고리 태그(푸른색)  |     array[string]     |
 |   HASH_TAGS   |    일반 태그(회색)     |     array[string]     |
-|     CHPT      |   채팅 관련 변수***    |        string         |
+|     CHPT      |   채팅 서버 포트***    |        string         |
 |   CHDOMAIN    |   채팅 서버 주소***    |        string         |
 |     BTIME     |   방송 진행 시간(초)   |        number         |
 |  PCON_OBJECT  | 구독 개월별 아이콘**** | object[array[object]] |
