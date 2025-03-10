@@ -8,6 +8,7 @@
 <summary><strong>목차</strong></summary>
 <div markdown="1">
 
+- [0. 기초](#0-기초)
 - [1. 로그인](#1-로그인)
   - [1.1. BODY](#11-body)
   - [1.2. 응답코드](#12-응답코드)
@@ -77,10 +78,33 @@
 </div>
 </details>
 
+## 0. 기초
+
+이하의 모든 요청은 별도 언급이 없을 경우 다음과 같은 헤더를 추가합니다.
+
+```js
+{
+    "User-Agent" : "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
+    "Origin": "https://play.sooplive.co.kr"
+    "Referer": "https://play.sooplive.co.kr/"
+}
+```
+
+단, 해외에서의 요청은 다음과 같은 헤더를 추가합니다.
+
+```js
+{
+    "User-Agent" : "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
+    "Origin": "https://live.sooplive.co.kr"
+    "Referer": "https://live.sooplive.co.kr/"
+}
+```
+
+
 ## 1. 로그인
 
-```
-POST https://login.sooplive.co.kr/app/LoginAction.php
+```js
+POST `https://login.sooplive.co.kr/app/LoginAction.php`
 ```
 
 SOOP 계정으로 로그인합니다.
@@ -199,8 +223,8 @@ SOOP 계정으로 로그인합니다.
 
 ## 2. 2차 비밀번호 로그인
 
-```
-POST https://login.sooplive.co.kr/app/LoginAction.php
+```js
+POST `https://login.sooplive.co.kr/app/LoginAction.php`
 ```
 
 ### 2.1. BODY
@@ -223,8 +247,8 @@ POST https://login.sooplive.co.kr/app/LoginAction.php
 |   -1   | 실패  |
 
 ## 3. 로그인 상태 확인
-```
-GET https://afevent2.sooplive.co.kr/api/get_private_info.php
+```js
+GET `https://afevent2.sooplive.co.kr/api/get_private_info.php`
 ```
 세션의 로그인 상태와 로그인된 계정의 간단한 정보를 얻을 수 있는 API입니다.
 
@@ -271,8 +295,8 @@ GET https://afevent2.sooplive.co.kr/api/get_private_info.php
 
 ## 5. 채널 정보
 
-```text
-GET https://st.sooplive.co.kr/api/get_station_status.php
+```js
+GET `https://st.sooplive.co.kr/api/get_station_status.php`
 ```
 
 채널의 각종 통계 자료를 반환합니다.
@@ -314,8 +338,8 @@ GET https://st.sooplive.co.kr/api/get_station_status.php
 
 ## 6. 방송국 홈
 
-```
-GET chapi.sooplive.co.kr/api/{BJID}/home
+```js
+GET `chapi.sooplive.co.kr/api/${BJID}/home`
 ```
 
 방송국 홈 메뉴의 정보를 불러오는 API입니다.
@@ -352,8 +376,8 @@ GET chapi.sooplive.co.kr/api/{BJID}/home
 
 ## 7. 생방송 정보
 
-```
-POST https://live.sooplive.co.kr/afreeca/player_live_api.php
+```js
+POST `https://live.sooplive.co.kr/afreeca/player_live_api.php`
 ```
 
 해당 요청은 스트리머의 방송 중 여부와 해당 방송의 각종 정보를 불러옵니다.
@@ -388,27 +412,32 @@ POST https://live.sooplive.co.kr/afreeca/player_live_api.php
 #### 7.2.2. 방송중일 경우 (성공)
 
 
-|      KEY      |         VALUE          |         TYPE          |
-| :-----------: | :--------------------: | :-------------------: |
-|  VIEWPRESET   |  방송의 품질 프리셋*   |     array[object]     |
-|      BNO      |   방송의 식별번호**    |        number         |
-|    BJNICK     | 해당 스트리머의 닉네임 |        string         |
-|     CATE      |   방송 카테고리 번호   |        number         |
-|    CHATNO     |   채팅 서버 번호?***   |        number         |
-|     BPWD      |   비밀번호 적용 여부   |    string (Y or N)    |
-|     TITLE     |      방송의 제목       |        string         |
-|      BPS      |  최고품질 비트레이트   |        string         |
-|  RESOLUTION   |    최고품질 해상도     |        string         |
-|    S1440P     |  1440p 방송 적용여부   |   number (-1 or 1)    |
-| CATEGORY_TAGS | 카테고리 태그(푸른색)  |     array[string]     |
-|   HASH_TAGS   |    일반 태그(회색)     |     array[string]     |
-|     CHPT      |   채팅 관련 변수***    |        string         |
-|   CHDOMAIN    |   채팅 서버 주소***    |        string         |
-|     BTIME     |   방송 진행 시간(초)   |        number         |
-|  PCON_OBJECT  | 구독 개월별 아이콘**** | object[array[object]] |
-|      FTK      | 스트리머 고유 토큰?*** |        string         |
-|  TIER1_NICK   |      1티어 구독명      |        string         |
-|  TIER2_NICK   |      2티어 구독명      |        string         |
+|      KEY      |          VALUE          |         TYPE          |
+| :-----------: | :---------------------: | :-------------------: |
+|  VIEWPRESET   |   방송의 품질 프리셋*   |     array[object]     |
+|      BNO      |    방송의 식별번호**    |        number         |
+|    BJNICK     | 해당 스트리머의 닉네임  |        string         |
+|     CATE      |   방송 카테고리 번호    |        number         |
+|    CHATNO     |   채팅 서버 번호?***    |        number         |
+|     BPWD      |   비밀번호 적용 여부    |    string (Y or N)    |
+|     TITLE     |       방송의 제목       |        string         |
+|      BPS      |   최고품질 비트레이트   |        string         |
+|  RESOLUTION   |     최고품질 해상도     |        string         |
+|    S1440P     |   1440p 방송 적용여부   |   number (-1 or 1)    |
+| CATEGORY_TAGS |  카테고리 태그(푸른색)  |     array[string]     |
+|   HASH_TAGS   |     일반 태그(회색)     |     array[string]     |
+|     CHIP      |         채팅 IP         |        string         |
+|     CHPT      |    채팅 서버 포트***    |        string         |
+|   CHDOMAIN    | 채팅 서버 도메인네임*** |        string         |
+|     BTIME     |   방송 진행 시간(초)    |        number         |
+|  PCON_OBJECT  | 구독 개월별 아이콘****  | object[array[object]] |
+|      FTK      | 스트리머 고유 토큰?***  |        string         |
+|  TIER1_NICK   |      1티어 구독명       |        string         |
+|  TIER2_NICK   |      2티어 구독명       |        string         |
+|     CTIP      |         센터 IP         |        string         |
+|     CTPT      |        센터 포트        |        string         |
+|     GWIP      |      게이트웨이 IP      |        string         |
+|     GWPT      |     게이트웨이 포트     |        string         |
 
 >*\* [7.3.1. 프리셋 객체](#731-프리셋-객체) 참고*  
 >*\*\* 방송 스트림 요청에 사용*  
@@ -459,7 +488,7 @@ POST https://live.sooplive.co.kr/afreeca/player_live_api.php
         "CHIP": "110.10.76.66",
         "CHPT": "8040",
         "CHDOMAIN": "chat-6E0A4C42.sooplive.co.kr",
-        "CDN": "gcp_cdn",
+        "CDN": "gs_cdn",
         "RMD": "https://livestream-manager.sooplive.co.kr",
         "GWIP": "222.233.54.57",
         "GWPT": "3456",
@@ -611,8 +640,8 @@ POST https://live.sooplive.co.kr/afreeca/player_live_api.php
 
 ### 8.1. HLS 키 요청
 
-```
-POST https://live.sooplive.co.kr/afreeca/player_live_api.php
+```js
+POST `https://live.sooplive.co.kr/afreeca/player_live_api.php`
 ```
 <!-- omit from toc -->
 ### BODY
@@ -630,7 +659,7 @@ POST https://live.sooplive.co.kr/afreeca/player_live_api.php
 {
     "CHANNEL": {
         "RESULT": 1,
-        "AID": "{HASH}" //string
+        "AID": ******** //string
     }
 }
 ```
@@ -638,12 +667,14 @@ POST https://live.sooplive.co.kr/afreeca/player_live_api.php
 이렇게 얻어진 HLS 키는 이후 플레이리스트를 요청할 때 파라메터로 쓰입니다.  
   
 >**이때, "quality"파라메터를 전달해야만 원하는 품질의 플레이리스트를 받을 수 있습니다.**  
+> - "quality" 파라메터에 "master"를 전달하면 마스터 플레이리스트를 받을 수 있습니다.  
+> - 한국에서 요청을 진행할 경우 마스터 플레이리스트는 360p,540p 스트림만을 포함합니다.
 >**또한 비밀번호가 설정된 방송의 경우 이때 "pwd"파라메터로 비밀번호를 전달해야 합니다.**
 
 
 ### 8.2. 스트림 URL 요청
-```
-GET https://livestream-manager.sooplive.co.kr/broad_stream_assign.html
+```js
+GET `https://livestream-manager.sooplive.co.kr/broad_stream_assign.html`
 ```
 
 <!-- omit from toc -->
@@ -654,23 +685,26 @@ GET https://livestream-manager.sooplive.co.kr/broad_stream_assign.html
 | return_type | [방송 정보 API](#6-생방송-정보)에서 얻어온 CDN 변수 |    YES    |
 |  broad_key  |             {BNO}-common-{quality}-hls              |    YES    |
 
+**CDN 변수가 "gs_cdn"일 경우, 쿼리에 "gs_cdn_pc_web"을 대신 전달해야 합니다.**
+CDN 변수가 "gcp_cdn"일 경우 헤더의 Origin과 Referer를 SOOP의 글로벌 도메인으로 설정해야 합니다.
+
 <!-- omit from toc -->
 ### RESPONSE
 
 ```js
 {
     "result":"1",
-    "view_url":"https://live-global-cdn-v02.sooplive.co.kr/..",
+    "view_url":view_url,
     "stream_status":"complete"
 }
 ```
 
-이 응답에서 얻은 view_url 정보를 이용해 다음 요청을 진행합니다.
+이 응답에서 얻은 view_url로 플레이리스트를 요청합니다.
 
 ### 8.3. 플레이리스트 요청
 
-```
-GET {view_url}
+```js
+GET view_url
 ```
 <!-- omit from toc -->
 ### PARAMS
@@ -682,14 +716,16 @@ GET {view_url}
 <!-- omit from toc -->
 ### RESPONSE
 
-[auth_playlist.m3u8 예시](/models/playlist/auth_playlist.m3u8)
+[auth_playlist.m3u8 예시](/models/media_playlists/live_playlist.m3u8)
 
-이렇게 얻어진 플레이리스트는 각 2초 길이의 세그먼트 6개를 포함합니다.  
-따라서 해당 요청을 주기적으로 반복하여 플레이리스트를 갱신해야 합니다.
+이렇게 얻어진 플레이리스트는 각 2초 길이의 세그먼트 6개를 포함합니다. 
+
+최초로 요청된 플레이리스트는 영상 처리 중임을 표시하는 preloading 세그먼트를 포함합니다.
+세그먼트의 URI가 "preloading"을 포함하는지 여부를 검사하여 필터링할 수 있습니다.
 
 ## 9. VOD 정보
-```
-POST https://api.m.sooplive.co.kr/station/video/a/view 
+```js
+POST `https://api.m.sooplive.co.kr/station/video/a/view` 
 ```
 
 VOD의 각종 정보와 HLS 플레이리스트 파일을 얻을 수 있는 API입니다.
@@ -743,22 +779,22 @@ VOD 고유번호는 VOD 플레이어 URL의 마지막 요소 또는 검색 API�
     "data": {
         "station_no": 99999999,
         "bbs_no": 99999999,
-        "writer_id": "{게시자 ID}",
+        "writer_id": 게시자 ID,
         "board_type": 105,
         "notice_yn": 0,
         "share_yn": 1,
         "comment_yn": 1,
         "auth_no": 101,
-        "title": "{VOD 제목 1}",
-        "bj_id": "{스트리머 ID}",
+        "title": VOD 제목 1,
+        "bj_id": 스트리머 ID,
         "bbs_title": "방송 다시보기",  // 실제 응답
         "display_auth_no": 101,
         "title_no": 99999999,
-        "full_title": "{VOD 제목 2}",
-        "writer_nick": "{게시자 닉네임}",
+        "full_title": VOD 제목 2,
+        "writer_nick": 게시자 닉네임,
         "content": "  ",
         "grade": 0,
-        "thumb": "{THUMBNAIL_URL}",
+        "thumb": THUMBNAIL_URL,
         "flag": "SUCCEED",
         "ucc_type": "21",
         "total_file_duration": 6302250,
@@ -809,7 +845,7 @@ VOD 고유번호는 VOD 플레이어 URL의 마지막 요소 또는 검색 API�
         "videoballoon_cnt": 0,
         "original_vod": null,
         "fullbtn_case": 3,
-        "catch_story_scheme": "https://vod.sooplive.co.kr/player/{catch_story_idx}/catchstory?szLocation=vod_player",
+        "catch_story_scheme": `https://vod.sooplive.co.kr/player/${catch_story_idx}/catchstory?szLocation=vod_player`,
         "catch_story_idx": 999999,
         "catch_story_title_no": 99999999,
         "files": [],
@@ -841,13 +877,13 @@ VOD 고유번호는 VOD 플레이어 URL의 마지막 요소 또는 검색 API�
         "default_bitrate": 4000,
         "default_quality": "hd4k",
         "share": {
-            "url": "https://vod.sooplive.co.kr/player/{title_no}",
+            "url": `https://vod.sooplive.co.kr/player/${title_no}`,
             "facebook": "{facebook_share_url}",
             "twitter": "{twitter_share_url}",
-            "me2day": "http://m.facebook.com/sharer.php?u=https%3A%2F%2Fvod.sooplive.co.kr%2Fplayer%2F{title_no}"
+            "me2day": `http://m.facebook.com/sharer.php?u=https%3A%2F%2Fvod.sooplive.co.kr%2Fplayer%2F${title_no}`
         },
         "is_later_view": false,
-        "station_logo": "https://stimg.sooplive.co.kr/LOGO/{BJID}.substr(0,2)/{BJID}/{BJID}.jpg",
+        "station_logo": `https://stimg.sooplive.co.kr/LOGO/${BJID.substr(0,2)}/${BJID}/${BJID}.jpg`,
         "is_manager": false,
         "manager_list": [],
         "adballoon": {
@@ -855,11 +891,11 @@ VOD 고유번호는 VOD 플레이어 URL의 마지막 요소 또는 검색 API�
             "load": null,
             "icon_url": "",
             "title": "",
-            "url": "https://adballoon.sooplive.co.kr/support.php?view=list&broad_system=VOD&broad_no={BNO}&bj_id={BJID}",
-            "list_url": "https://adballoon.sooplive.co.kr/support.php?view=list&broad_system=VOD&broad_no={BNO}&bj_id={BJID}",
+            "url": `https://adballoon.sooplive.co.kr/support.php?view=list&broad_system=VOD&broad_no=${BNO}&bj_id=${BJID}`,
+            "list_url": `https://adballoon.sooplive.co.kr/support.php?view=list&broad_system=VOD&broad_no=${BNO}&bj_id=${BJID}`,
             "banner_type": "NONE",
             "message": null,
-            "user_nick": "닉네임",
+            "user_nick": 닉네임,
             "campaign_no": 0
         },
         "hash_tags": [
@@ -910,12 +946,12 @@ VOD 고유번호는 VOD 플레이어 URL의 마지막 요소 또는 검색 API�
 
 #### 9.3.2. VOD Chapter Object
 
-|     KEY      |               VALUE               |     TYPE      |
-| :----------: | :-------------------------------: | :-----------: |
-|  file_order  |            챕터 번호*             |    string     |
-|     file     |      마스터 플레이리스트 url      |    string     |
-|  file_start  |          챕터 시작 일시           |    string     |
-| quality_info | 품질 프리셋별 플레이리스트와 정보 | array[object] |
+|     KEY      |               VALUE               |   TYPE   |
+| :----------: | :-------------------------------: | :------: |
+|  file_order  |            챕터 번호*             |  string  |
+|     file     |      마스터 플레이리스트 url      |  string  |
+|  file_start  |          챕터 시작 일시           |  string  |
+| quality_info | 품질 프리셋별 플레이리스트와 정보 | object[] |
 
 
 >\* 다시보기가 잘릴 경우, 챕터 번호들이 연속적이지 않을 수 있습니다.
@@ -993,7 +1029,7 @@ VOD 고유번호는 VOD 플레이어 URL의 마지막 요소 또는 검색 API�
 ```js
 {
     "month": 0,
-    "file_name": "{image_url}"
+    "file_name": image_url
 },
 ```
 
@@ -1002,8 +1038,8 @@ VOD 고유번호는 VOD 플레이어 URL의 마지막 요소 또는 검색 API�
 통합 검색 API는 숲의 탐색 탭을 통해 접근할 수 있는 API입니다.  
 해당 요청의 모드를 변경하여 카테고리, 생방송, VOD 등 덜 정확하지만 다양한 정보를 검색할 수 있습니다.
 
-```
-GET https://sch.sooplive.co.kr/api.php
+```js
+GET `https://sch.sooplive.co.kr/api.php`
 ```
 
 ### 10.1. 공통 파라메터
@@ -1065,10 +1101,10 @@ GET https://sch.sooplive.co.kr/api.php
 
 #### 10.2.1. 추가 파라메터
 
-|    KEY     |         VALUE          |    TYPE     | NECESSARY |
-| :--------: | :--------------------: | :---------: | :-------: |
-|  isMobile  |  모바일용 응답(추정)   | number[0,1] |    NO     |
-| onlyParent | 중계방 관련 설정(추정) | number[0,1] |    NO     |
+|    KEY     |         VALUE          |      TYPE      | NECESSARY |
+| :--------: | :--------------------: | :------------: | :-------: |
+|  isMobile  |  모바일용 응답(추정)   | number, 0 or 1 |    NO     |
+| onlyParent | 중계방 관련 설정(추정) | number, 0 or 1 |    NO     |
 
 > 두 파라메터 모두 응답 데이터에는 영향을 미치지 않았지만 "isMobile" 파라메터는 값에 따라 응답 구조를 바꿀 수 있습니다.
 
@@ -1258,25 +1294,25 @@ GET https://sch.sooplive.co.kr/api.php
 응답의 "DATA" 필드로 VOD 정보 객체의 배열이 전달됩니다.
 
 
-|         KEY          |              VALUE               |     TYPE      |
-| :------------------: | :------------------------------: | :-----------: |
-|       title_no       |           VOD 식별번호           |    string     |
-|       view_cnt       |              조회수              |    string     |
-|  vod_category_name   |         메인 카테고리명          |    string     |
-|      file_type       |             VOD 유형             |    string     |
-|       reg_date       | 업로드 일시(YYYY-MM-DD HH:MM:SS) |    string     |
-|       user_id        |          VOD 제작자 ID           |    string     |
-|      user_nick       |        VOD 제작자 닉네임         |    string     |
-|     original_bj      |   VOD 저작권자(스트리머)의 ID    |    string     |
-|    original_nick     | VOD 저작권자(스트리머)의 닉네임  |    string     |
-| original_reg_user_id |        출처 VOD 제작자 ID        |    string     |
-|     org_title_no     |        출처 VOD 식별번호         |    string     |
-|        title         |             VOD 제목             |    string     |
-|       duration       |        VOD 길이(HH:MM:SS)        |    string     |
-|    thumbnail_path    |            썸네일 URL            |    string     |
-|     vod_duration     |           VOD 길이(초)           |    string     |
-|         url          |         VOD 플레이어 URL         |    string     |
-|    title_history     |        방제 변경 타임라인        | array[object] |
+|         KEY          |              VALUE               |   TYPE   |
+| :------------------: | :------------------------------: | :------: |
+|       title_no       |           VOD 식별번호           |  string  |
+|       view_cnt       |              조회수              |  string  |
+|  vod_category_name   |         메인 카테고리명          |  string  |
+|      file_type       |             VOD 유형             |  string  |
+|       reg_date       | 업로드 일시(YYYY-MM-DD HH:MM:SS) |  string  |
+|       user_id        |          VOD 제작자 ID           |  string  |
+|      user_nick       |        VOD 제작자 닉네임         |  string  |
+|     original_bj      |   VOD 저작권자(스트리머)의 ID    |  string  |
+|    original_nick     | VOD 저작권자(스트리머)의 닉네임  |  string  |
+| original_reg_user_id |        출처 VOD 제작자 ID        |  string  |
+|     org_title_no     |        출처 VOD 식별번호         |  string  |
+|        title         |             VOD 제목             |  string  |
+|       duration       |        VOD 길이(HH:MM:SS)        |  string  |
+|    thumbnail_path    |            썸네일 URL            |  string  |
+|     vod_duration     |           VOD 길이(초)           |  string  |
+|         url          |         VOD 플레이어 URL         |  string  |
+|    title_history     |        방제 변경 타임라인        | object[] |
 
 <details>
 <summary>타임라인 정보 객체 접기/펼치기</summary>
@@ -1293,11 +1329,11 @@ GET https://sch.sooplive.co.kr/api.php
 ```js
 {
     "view_cnt": 0,
-    "unigram_title": "{TITLE}",
+    "unigram_title": TITLE,
     "change_tm": 1739437514,
-    "ngram_title": "{TITLE}",
+    "ngram_title": TITLE,
     "change_position": "02:12:22",
-    "title": "{TITLE}",
+    "title": TITLE,
     "change_second": 7942
 }
 ```
@@ -1310,100 +1346,100 @@ GET https://sch.sooplive.co.kr/api.php
 
 ```js
 {
-    "title_no": "{TITLE_NO}",
+    "title_no": TITLE_NO,
     "view_cnt": "9628",
     "auth": "OPEN_ALL",
-    "vod_category_name": "{CATEGORY}",
+    "vod_category_name": CATEGORY,
     "station_no": "999999999",
     "file_resolution": "1920x1080",
     "file_type": "REVIEW",
     "bbs_no": "99999999",
     "memo_cnt": "0",
     "mobile_thumbnail_path": "http://videoimg.sooplive.co.kr/php/SnapshotLoad.php?rowKey=...",
-    "station_name": "{ST_NAME}",
+    "station_name": ST_NAME,
     "recomm_cnt": "1",
-    "standard_vod_category_name": "{CATEGORY}",
+    "standard_vod_category_name": CATEGORY,
     "hotclip_yn": "0",
     "vod_view_cnt": "175",
     "encoding_type": "2",
     "auto_hashtags": [],
     "reg_date": "2025-02-14 11:04:14",
-    "user_id": "{USERID}",
+    "user_id": USERID,
     "grade": "0",
     "_update_date_time": "2025-02-15T00:24:44",
     "status": "1",
-    "title": "{TITLE}",
+    "title": TITLE,
     "content": "  ",
     "duration": "19:11:12",
     "vod_category": "00040001",
-    "unigram_user_nick": "{BJNICK}",
+    "unigram_user_nick": BJNICK,
     "thumbnail_path": "http://videoimg.sooplive.co.kr/php/SnapshotLoad.php?rowKey=...",
     "category_id": "",
     "hash_tags": [],
     "aftv_score": "0",
-    "b_title": "{TITLE}",
-    "user_nick": "{BJNICK}",
+    "b_title": TITLE,
+    "user_nick": BJNICK,
     "vod_duration": "69072738",
     "rookie": false,
-    "url": "https://vod.afreecatv.com/player/{TITLE_NO}",
+    "url": `https://vod.afreecatv.com/player/${TITLE_NO}`,
     "video_type": "ucc",
-    "unigram_title": "{TITLE}",
+    "unigram_title": TITLE,
     "ucc_type": "30",
     "ppv": false,
     "category": "00010000",
     "title_history": [
         {
             "view_cnt": 0,
-            "unigram_title": "{TITLE_1}",
+            "unigram_title": TITLE_1,
             "change_tm": 1739437514,
-            "ngram_title": "{TITLE_1}",
+            "ngram_title": TITLE_1,
             "change_position": "02:12:22",
-            "title": "{TITLE_1}",
+            "title": TITLE_1,
             "change_second": 7942
         },
         {
             "view_cnt": 0,
-            "unigram_title": "{TITLE_2}",
+            "unigram_title": TITLE_2,
             "change_tm": 1739438351,
-            "ngram_title": "{TITLE_2}",
+            "ngram_title": TITLE_2,
             "change_position": "02:26:19",
-            "title": "{TITLE_2}",
+            "title": TITLE_2,
             "change_second": 8779
         },
         {
             "view_cnt": 0,
-            "unigram_title": "{TITLE_3}",
+            "unigram_title": TITLE_3,
             "change_tm": 1739441067,
-            "ngram_title": "{TITLE_3}",
+            "ngram_title": TITLE_3,
             "change_position": "03:11:35",
-            "title": "{TITLE_3}",
+            "title": TITLE_3,
             "change_second": 11495
         },
         {
             "view_cnt": 0,
-            "unigram_title": "{TITLE_4}",
+            "unigram_title": TITLE_4,
             "change_tm": 1739441105,
-            "ngram_title": "{TITLE_4}",
+            "ngram_title": TITLE_4,
             "change_position": "03:12:13",
-            "title": "{TITLE_4}",
+            "title": TITLE_4,
             "change_second": 11533
         },
         {
             "view_cnt": 0,
-            "unigram_title": "{TITLE_5}",
+            "unigram_title": TITLE_5,
             "change_tm": 1739463363,
-            "ngram_title": "{TITLE_5}",
+            "ngram_title": TITLE_5,
             "change_position": "09:23:08",
-            "title": "{TITLE_5}",
+            "title": TITLE_5,
             "change_second": 33788
         },
         {
             "view_cnt": 0,
-            "unigram_title": "{TITLE_6}",
+            "unigram_title": TITLE_6,
             "change_tm": 1739481534,
-            "ngram_title": "{TITLE_6}",
+            "ngram_title": TITLE_6,
             "change_position": "14:25:58",
-            "title": "{TITLE_6}",
+            "title": TITLE_6,
             "change_second": 51958
         }
     ],
@@ -1419,7 +1455,7 @@ GET https://sch.sooplive.co.kr/api.php
     "original_reg_user_id": "",
     "original_bj": "",
     "category_tags": [
-        "{CATEGORY}"
+        CATEGORY
     ],
     "favorite_flag": 0,
     "use_vertical_thumbnail": false
@@ -1443,100 +1479,100 @@ GET https://sch.sooplive.co.kr/api.php
     "charset": "UTF-8",
     "DATA": [
         {
-            "title_no": "{TITLE_NO}",
+            "title_no": TITLE_NO,
             "view_cnt": "9628",
             "auth": "OPEN_ALL",
-            "vod_category_name": "{CATEGORY}",
+            "vod_category_name": CATEGORY,
             "station_no": "999999999",
             "file_resolution": "1920x1080",
             "file_type": "REVIEW",
             "bbs_no": "99999999",
             "memo_cnt": "0",
             "mobile_thumbnail_path": "http://videoimg.sooplive.co.kr/php/SnapshotLoad.php?rowKey=...",
-            "station_name": "{ST_NAME}",
+            "station_name": ST_NAME,
             "recomm_cnt": "1",
-            "standard_vod_category_name": "{CATEGORY}",
+            "standard_vod_category_name": CATEGORY,
             "hotclip_yn": "0",
             "vod_view_cnt": "175",
             "encoding_type": "2",
             "auto_hashtags": [],
             "reg_date": "2025-02-14 11:04:14",
-            "user_id": "{USERID}",
+            "user_id": USERID,
             "grade": "0",
             "_update_date_time": "2025-02-15T00:24:44",
             "status": "1",
-            "title": "{TITLE}",
+            "title": TITLE,
             "content": "  ",
             "duration": "19:11:12",
             "vod_category": "00040001",
-            "unigram_user_nick": "{BJNICK}",
+            "unigram_user_nick": BJNICK,
             "thumbnail_path": "http://videoimg.sooplive.co.kr/php/SnapshotLoad.php?rowKey=...",
             "category_id": "",
             "hash_tags": [],
             "aftv_score": "0",
-            "b_title": "{TITLE}",
-            "user_nick": "{BJNICK}",
+            "b_title": TITLE,
+            "user_nick": BJNICK,
             "vod_duration": "69072738",
             "rookie": false,
-            "url": "https://vod.afreecatv.com/player/{TITLE_NO}",
+            "url": `https://vod.afreecatv.com/player/${TITLE_NO}`,
             "video_type": "ucc",
-            "unigram_title": "{TITLE}",
+            "unigram_title": TITLE,
             "ucc_type": "30",
             "ppv": false,
             "category": "00010000",
             "title_history": [
                 {
                     "view_cnt": 0,
-                    "unigram_title": "{TITLE_1}",
+                    "unigram_title": TITLE_1,
                     "change_tm": 1739437514,
-                    "ngram_title": "{TITLE_1}",
+                    "ngram_title": TITLE_1,
                     "change_position": "02:12:22",
-                    "title": "{TITLE_1}",
+                    "title": TITLE_1,
                     "change_second": 7942
                 },
                 {
                     "view_cnt": 0,
-                    "unigram_title": "{TITLE_2}",
+                    "unigram_title": TITLE_2,
                     "change_tm": 1739438351,
-                    "ngram_title": "{TITLE_2}",
+                    "ngram_title": TITLE_2,
                     "change_position": "02:26:19",
-                    "title": "{TITLE_2}",
+                    "title": TITLE_2,
                     "change_second": 8779
                 },
                 {
                     "view_cnt": 0,
-                    "unigram_title": "{TITLE_3}",
+                    "unigram_title": TITLE_3,
                     "change_tm": 1739441067,
-                    "ngram_title": "{TITLE_3}",
+                    "ngram_title": TITLE_3,
                     "change_position": "03:11:35",
-                    "title": "{TITLE_3}",
+                    "title": TITLE_3,
                     "change_second": 11495
                 },
                 {
                     "view_cnt": 0,
-                    "unigram_title": "{TITLE_4}",
+                    "unigram_title": TITLE_4,
                     "change_tm": 1739441105,
-                    "ngram_title": "{TITLE_4}",
+                    "ngram_title": TITLE_4,
                     "change_position": "03:12:13",
-                    "title": "{TITLE_4}",
+                    "title": TITLE_4,
                     "change_second": 11533
                 },
                 {
                     "view_cnt": 0,
-                    "unigram_title": "{TITLE_5}",
+                    "unigram_title": TITLE_5,
                     "change_tm": 1739463363,
-                    "ngram_title": "{TITLE_5}",
+                    "ngram_title": TITLE_5,
                     "change_position": "09:23:08",
-                    "title": "{TITLE_5}",
+                    "title": TITLE_5,
                     "change_second": 33788
                 },
                 {
                     "view_cnt": 0,
-                    "unigram_title": "{TITLE_6}",
+                    "unigram_title": TITLE_6,
                     "change_tm": 1739481534,
-                    "ngram_title": "{TITLE_6}",
+                    "ngram_title": TITLE_6,
                     "change_position": "14:25:58",
-                    "title": "{TITLE_6}",
+                    "title": TITLE_6,
                     "change_second": 51958
                 }
             ],
@@ -1566,8 +1602,8 @@ GET https://sch.sooplive.co.kr/api.php
     "RECOMMEND_DATA": [],
     "CATCH_DATA": [],
     "CATCH_STORY_DATA": [],
-    "WORD": "{KEYWORD}",
-    "origin_word": "{KEYWORD}"
+    "WORD": KEYWORD,
+    "origin_word": KEYWORD
 }
 ```
 
@@ -1629,28 +1665,28 @@ GET https://sch.sooplive.co.kr/api.php
     "charset": "UTF-8",
     "DATA": [
         {
-            "station_name": "{STNAME}",
-            "title_no": {TITLE_NO},
+            "station_name": STNAME,
+            "title_no": TITLE_NO,
             "photo_cnt": "0",
-            "station_user_id": "{BJID}",
-            "station_no": {STATION_NO},
-            "user_nick": "{BJNICK}",
-            "content": "{CONTENT}",
+            "station_user_id": BJID,
+            "station_no": STATION_NO,
+            "user_nick": BJNICK,
+            "content": CONTENT,
             "reg_date": "2025-02-16 16:28:35",
-            "user_id": "{BJID}",
+            "user_id": BJID,
             "bbs_no": 90309005,
             "favorite_flag": 0,
             "thumbnail": "",
-            "title": "{TITLE}",
+            "title": TITLE,
             "view_cnt": 12,
             "recomm_cnt": 3,
             "memo_cnt": 0,
-            "station_logo": "https://stimg.sooplive.co.kr/LOGO/{BJID.substr(0,2)}/{BJID}/{BJID}.jpg",
-            "url": "https://ch.sooplive.co.kr/{BJID}/post/{TITLE_NO}"
+            "station_logo": `https://stimg.sooplive.co.kr/LOGO/${BJID.substr(0,2)}/${BJID}/${BJID}.jpg`,
+            "url": `https://ch.sooplive.co.kr/${BJID}/post/${TITLE_NO}`
         }, ...
     ],
-    "WORD": "{KEYWORD}",
-    "origin_word": "{KEYWORD}"
+    "WORD": KEYWORD,
+    "origin_word": KEYWORD
 }
 ```
 
@@ -1663,19 +1699,19 @@ GET https://sch.sooplive.co.kr/api.php
 
 #### 10.5.1. RESPONSE
 
-|        KEY        |               VALUE               |     TYPE      |
-| :---------------: | :-------------------------------: | :-----------: |
-|   station_logo    |    스트리머 프로필 이미지 URL     |    string     |
-|     user_nick     |          스트리머 닉네임          |    string     |
-|      user_id      |            스트리머 ID            |    string     |
-|    station_no     |            방송국 번호            |    string     |
-| recent_broad_date | 최근방송일시(YYYY-MM-DD HH:MM:SS) |    string     |
-|  total_view_cnt   |           누적 시청자수           |    string     |
-|   favorite_cnt    |             애청자 수             |    string     |
-| total_broad_time  |          총 방송시간(시)          |    number     |
-|      synonym      |         연관 검색어(추정)         | array[string] |
-|      medals       |               메달                | array[string] |
-|     medal_url     |       대표 메달 이미지 URL        |    string     |
+|        KEY        |               VALUE               |   TYPE   |
+| :---------------: | :-------------------------------: | :------: |
+|   station_logo    |    스트리머 프로필 이미지 URL     |  string  |
+|     user_nick     |          스트리머 닉네임          |  string  |
+|      user_id      |            스트리머 ID            |  string  |
+|    station_no     |            방송국 번호            |  string  |
+| recent_broad_date | 최근방송일시(YYYY-MM-DD HH:MM:SS) |  string  |
+|  total_view_cnt   |           누적 시청자수           |  string  |
+|   favorite_cnt    |             애청자 수             |  string  |
+| total_broad_time  |          총 방송시간(시)          |  number  |
+|      synonym      |         연관 검색어(추정)         | string[] |
+|      medals       |               메달                | string[] |
+|     medal_url     |       대표 메달 이미지 URL        |  string  |
 
 <details>
 <summary>전체 응답 예시 접기/펼치기</summary>
@@ -1687,19 +1723,19 @@ GET https://sch.sooplive.co.kr/api.php
     "TOTAL_CNT": 1548,
     "DATA": [
         {
-            "station_logo": "https://profile.img.sooplive.co.kr/LOGO/{BJID.substr(0,2)}/{BJID}/{BJID}.jpg",
+            "station_logo": `https://profile.img.sooplive.co.kr/LOGO/${BJID.substr(0,2)}/${BJID}/${BJID}.jpg`,
             "total_view_cnt": "35481894",
-            "station_no": "{STATION_NO}",
+            "station_no": STATION_NO,
             "club_yn": "N",
             "recent_broad_date": "2025-02-15 19:09:27",
             "station_title": "",
             "favorite_cnt": "193129",
-            "station_name": "{STNAME}",
-            "user_nick": "{BJNICK}",
+            "station_name": STNAME,
+            "user_nick": BJNICK,
             "rookie": false,
-            "ngram_station_name": "{STNAME}",
+            "ngram_station_name": STNAME,
             "ngram_station_title": "",
-            "user_id": "{BJID}",
+            "user_id": BJID,
             "block_state": "A",
             "grade": "1",
             "_update_date_time": "2025-02-16T16:36:12",
@@ -1711,7 +1747,7 @@ GET https://sch.sooplive.co.kr/api.php
             "profile_img_file": "",
             "profile_img_flag": false,
             "synonym": [
-                "{SYNONYMS}"
+                SYNONYMS
             ],
             "profile_img_height": "0",
             "profile_img_width": "0",
@@ -1730,7 +1766,7 @@ GET https://sch.sooplive.co.kr/api.php
         }
     ],
     "RECOMMEND_DATA": [],
-    "WORD": "{KEYWORD}",
+    "WORD": KEYWORD,
     "t": "json",
     "charset": "UTF-8",
     "version": "2.0"
@@ -1755,13 +1791,13 @@ GET https://sch.sooplive.co.kr/api.php
 
 "data"객체의 "list"필드로 카테고리 정보 객체의 배열을 반환합니다.
 
-|      KEY      |                  VALUE                   |     TYPE      |
-| :-----------: | :--------------------------------------: | :-----------: |
-|  category_no  |            카테고리 고유번호             |    string     |
-| category_name |                카테고리명                |    string     |
-|   view_cnt    |  현재 해당 카테고리 방송의 총 시청자수   |    number     |
-|  fixed_tags   | 카테고리의 상위 범주(포함된 것으로 간주) | array[string] |
-|   cate_img    |           카테고리 이미지 URL            |    string     |
+|      KEY      |                  VALUE                   |   TYPE   |
+| :-----------: | :--------------------------------------: | :------: |
+|  category_no  |            카테고리 고유번호             |  string  |
+| category_name |                카테고리명                |  string  |
+|   view_cnt    |  현재 해당 카테고리 방송의 총 시청자수   |  number  |
+|  fixed_tags   | 카테고리의 상위 범주(포함된 것으로 간주) | string[] |
+|   cate_img    |           카테고리 이미지 URL            |  string  |
 
 <details>
 <summary>전체 응답 예시 접기/펼치기</summary>
