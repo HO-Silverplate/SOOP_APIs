@@ -29,51 +29,52 @@
   - [3.1. RESPONSE](#31-response)
     - [3.1.1. 로그인 상태](#311-로그인-상태)
     - [3.1.2. 비로그인 상태](#312-비로그인-상태)
-- [4. 채팅](#4-채팅)
-- [5. 채널 정보](#5-채널-정보)
-  - [5.1. PARAMS](#51-params)
-  - [5.2. RESPONSE](#52-response)
-- [6. 방송국 홈](#6-방송국-홈)
-  - [6.1. RESPONSE](#61-response)
-- [7. 생방송 정보](#7-생방송-정보)
-  - [7.1. BODY](#71-body)
-  - [7.2. RESPONSE](#72-response)
-    - [7.2.1. 방송중이지 않을 경우](#721-방송중이지-않을-경우)
-    - [7.2.2. 방송중일 경우 (성공)](#722-방송중일-경우-성공)
-    - [7.2.3. 연령 제한 조건이 충족되지 않은 경우](#723-연령-제한-조건이-충족되지-않은-경우)
-  - [7.3. DATATYPE](#73-datatype)
-    - [7.3.1. 프리셋 객체](#731-프리셋-객체)
-    - [7.3.2. 구독 퍼스너콘 객체](#732-구독-퍼스너콘-객체)
-- [8. 생방송 플레이리스트 얻기](#8-생방송-플레이리스트-얻기)
-  - [8.1. HLS 키 요청](#81-hls-키-요청)
-  - [8.2. 스트림 URL 요청](#82-스트림-url-요청)
-  - [8.3. 플레이리스트 요청](#83-플레이리스트-요청)
-- [9. VOD 정보](#9-vod-정보)
-  - [9.1. BODY](#91-body)
-  - [9.2. RESPONSE](#92-response)
-  - [9.3. DATATYPE](#93-datatype)
-    - [9.3.1. FileType](#931-filetype)
-    - [9.3.2. VOD Chapter Object](#932-vod-chapter-object)
-    - [9.3.3. 구독 퍼스너콘 객체 #2](#933-구독-퍼스너콘-객체-2)
-- [10. 통합 검색](#10-통합-검색)
-  - [10.1. 공통 파라메터](#101-공통-파라메터)
-  - [10.2. 라이브 검색](#102-라이브-검색)
-    - [10.2.1. 추가 파라메터](#1021-추가-파라메터)
-    - [10.2.2. RESPONSE](#1022-response)
-  - [10.3. VOD 검색](#103-vod-검색)
-    - [10.3.1. 추가 파라메터](#1031-추가-파라메터)
-    - [10.3.2. RESPONSE](#1032-response)
-  - [10.4. 게시글 검색](#104-게시글-검색)
-    - [10.4.1. 추가 파라메터](#1041-추가-파라메터)
-    - [10.4.2. RESPONSE](#1042-response)
-  - [10.5. 스트리머 검색](#105-스트리머-검색)
-    - [10.5.1. RESPONSE](#1051-response)
-  - [10.6. 카테고리 탐색](#106-카테고리-탐색)
-    - [10.6.1. 추가 파라메터](#1061-추가-파라메터)
-    - [10.6.2. RESPONSE](#1062-response)
-- [11. 채널에서 검색](#11-채널에서-검색)
-- [12. 클립](#12-클립)
-- [13. 시그니처 이모티콘](#13-시그니처-이모티콘)
+- [4. 로그아웃](#4-로그아웃)
+- [5. 채팅](#5-채팅)
+- [6. 채널 정보](#6-채널-정보)
+  - [6.1. PARAMS](#61-params)
+  - [6.2. RESPONSE](#62-response)
+- [7. 방송국 홈](#7-방송국-홈)
+  - [7.1. RESPONSE](#71-response)
+- [8. 생방송 정보](#8-생방송-정보)
+  - [8.1. BODY](#81-body)
+  - [8.2. RESPONSE](#82-response)
+    - [8.2.1. 방송중이지 않을 경우](#821-방송중이지-않을-경우)
+    - [8.2.2. 방송중일 경우 (성공)](#822-방송중일-경우-성공)
+    - [8.2.3. 연령 제한 조건이 충족되지 않은 경우](#823-연령-제한-조건이-충족되지-않은-경우)
+  - [8.3. DATATYPE](#83-datatype)
+    - [8.3.1. 프리셋 객체](#831-프리셋-객체)
+    - [8.3.2. 구독 퍼스너콘 객체](#832-구독-퍼스너콘-객체)
+- [9. 생방송 플레이리스트 얻기](#9-생방송-플레이리스트-얻기)
+  - [9.1. HLS 키 요청](#91-hls-키-요청)
+  - [9.2. 스트림 URL 요청](#92-스트림-url-요청)
+  - [9.3. 플레이리스트 요청](#93-플레이리스트-요청)
+- [10. VOD 정보](#10-vod-정보)
+  - [10.1. BODY](#101-body)
+  - [10.2. RESPONSE](#102-response)
+  - [10.3. DATATYPE](#103-datatype)
+    - [10.3.1. FileType](#1031-filetype)
+    - [10.3.2. VOD Chapter Object](#1032-vod-chapter-object)
+    - [10.3.3. 구독 퍼스너콘 객체 #2](#1033-구독-퍼스너콘-객체-2)
+- [11. 통합 검색](#11-통합-검색)
+  - [11.1. 공통 파라메터](#111-공통-파라메터)
+  - [11.2. 라이브 검색](#112-라이브-검색)
+    - [11.2.1. 추가 파라메터](#1121-추가-파라메터)
+    - [11.2.2. RESPONSE](#1122-response)
+  - [11.3. VOD 검색](#113-vod-검색)
+    - [11.3.1. 추가 파라메터](#1131-추가-파라메터)
+    - [11.3.2. RESPONSE](#1132-response)
+  - [11.4. 게시글 검색](#114-게시글-검색)
+    - [11.4.1. 추가 파라메터](#1141-추가-파라메터)
+    - [11.4.2. RESPONSE](#1142-response)
+  - [11.5. 스트리머 검색](#115-스트리머-검색)
+    - [11.5.1. RESPONSE](#1151-response)
+  - [11.6. 카테고리 탐색](#116-카테고리-탐색)
+    - [11.6.1. 추가 파라메터](#1161-추가-파라메터)
+    - [11.6.2. RESPONSE](#1162-response)
+- [12. 채널에서 검색](#12-채널에서-검색)
+- [13. 클립](#13-클립)
+- [14. 시그니처 이모티콘](#14-시그니처-이모티콘)
 
 </div>
 </details>
@@ -283,7 +284,14 @@ GET `https://afevent2.sooplive.co.kr/api/get_private_info.php`
 }
 ```
 
-## 4. 채팅
+## 4. 로그아웃
+
+```js
+GET `https://login.sooplive.co.kr/app/LogOut.php`
+```
+SOOP에서 로그아웃하고 쿠키를 지웁니다.
+
+## 5. 채팅
 
 [이 gist](https://gist.github.com/HO-Silverplate/ba18b03d2a45f6825133bbc881e7f2e8)를 참고하세요.  
 해당 gist는 [@DOCHIS](https://github.com/DOCHIS)의 [gist](https://gist.github.com/DOCHIS/8095eb6a05586de220c81503b4684b36)와
@@ -293,7 +301,7 @@ GET `https://afevent2.sooplive.co.kr/api/get_private_info.php`
 - [서비스타입.json](./models/chat/servicetype.json)
 - [유저플래그.json](./models/chat/userflag.json)
 
-## 5. 채널 정보
+## 6. 채널 정보
 
 ```js
 GET `https://st.sooplive.co.kr/api/get_station_status.php`
@@ -301,7 +309,7 @@ GET `https://st.sooplive.co.kr/api/get_station_status.php`
 
 채널의 각종 통계 자료를 반환합니다.
 
-### 5.1. PARAMS
+### 6.1. PARAMS
 
 |     KEY     |       VALUE        |  TYPE  | NECESSARY |
 | :---------: | :----------------: | :----: | :-------: |
@@ -310,7 +318,7 @@ GET `https://st.sooplive.co.kr/api/get_station_status.php`
 |    mode     |        ???         | string |    NO     |
 | player_type |   플레이어 유형    | string |    NO     |
 
-### 5.2. RESPONSE
+### 6.2. RESPONSE
 
 ```js
 {
@@ -336,7 +344,7 @@ GET `https://st.sooplive.co.kr/api/get_station_status.php`
 }
 ```
 
-## 6. 방송국 홈
+## 7. 방송국 홈
 
 ```js
 GET `chapi.sooplive.co.kr/api/${BJID}/home`
@@ -347,7 +355,7 @@ GET `chapi.sooplive.co.kr/api/${BJID}/home`
 
 `BJID`는 스트리머의 고유 ID입니다.
 
-### 6.1. RESPONSE
+### 7.1. RESPONSE
 
 응답의 각 배열들은 다시보기, 게시글, 유저 클립 등 방송국 홈 화면에 표출될 각 컨텐츠들의 오브젝트로 구성됩니다.
 
@@ -374,7 +382,7 @@ GET `chapi.sooplive.co.kr/api/${BJID}/home`
 }
 ```
 
-## 7. 생방송 정보
+## 8. 생방송 정보
 
 ```js
 POST `https://live.sooplive.co.kr/afreeca/player_live_api.php`
@@ -383,7 +391,7 @@ POST `https://live.sooplive.co.kr/afreeca/player_live_api.php`
 해당 요청은 스트리머의 방송 중 여부와 해당 방송의 각종 정보를 불러옵니다.
 생방송의 HLS 플레이리스트와 채팅 서버에 접근하기 위해서 필수적인 정보를 제공하기에 자주 쓰이는 요청입니다.
 
-### 7.1. BODY
+### 8.1. BODY
 |     KEY     |       VALUE        |  TYPE  | NECESSARY |
 | :---------: | :----------------: | :----: | :-------: |
 |     bid     | 스트리머의 고유 ID | string |    YES    |
@@ -391,10 +399,10 @@ POST `https://live.sooplive.co.kr/afreeca/player_live_api.php`
 |    mode     |        ???         | string |    NO     |
 | player_type |   플레이어 유형    | string |    NO     |
 
-### 7.2. RESPONSE
+### 8.2. RESPONSE
 
 
-#### 7.2.1. 방송중이지 않을 경우
+#### 8.2.1. 방송중이지 않을 경우
 
 ```js
 {
@@ -409,7 +417,7 @@ POST `https://live.sooplive.co.kr/afreeca/player_live_api.php`
 }
 ```
 
-#### 7.2.2. 방송중일 경우 (성공)
+#### 8.2.2. 방송중일 경우 (성공)
 
 
 |      KEY      |          VALUE          |         TYPE          |
@@ -543,7 +551,7 @@ POST `https://live.sooplive.co.kr/afreeca/player_live_api.php`
 </div>
 </details>
 
-#### 7.2.3. 연령 제한 조건이 충족되지 않은 경우
+#### 8.2.3. 연령 제한 조건이 충족되지 않은 경우
 
 |    KEY     |        VALUE        |  TYPE  |
 | :--------: | :-----------------: | :----: |
@@ -572,9 +580,9 @@ POST `https://live.sooplive.co.kr/afreeca/player_live_api.php`
 }
 ```
 
-### 7.3. DATATYPE
+### 8.3. DATATYPE
 
-#### 7.3.1. 프리셋 객체
+#### 8.3.1. 프리셋 객체
 ```js
 {
     "label": "360p",
@@ -608,7 +616,7 @@ POST `https://live.sooplive.co.kr/afreeca/player_live_api.php`
 }
 ```
 
-#### 7.3.2. 구독 퍼스너콘 객체
+#### 8.3.2. 구독 퍼스너콘 객체
 
 ```js
 {
@@ -617,7 +625,7 @@ POST `https://live.sooplive.co.kr/afreeca/player_live_api.php`
 }
 ```
 
-## 8. 생방송 플레이리스트 얻기
+## 9. 생방송 플레이리스트 얻기
 
 생방송의 HLS 플레이리스트를 얻기 위해서는 다음과 같은 과정을 거쳐야 합니다 : 
 
@@ -638,7 +646,7 @@ POST `https://live.sooplive.co.kr/afreeca/player_live_api.php`
 |    CDN     |       CDN 변수        |    string     |
 
 
-### 8.1. HLS 키 요청
+### 9.1. HLS 키 요청
 
 ```js
 POST `https://live.sooplive.co.kr/afreeca/player_live_api.php`
@@ -672,7 +680,7 @@ POST `https://live.sooplive.co.kr/afreeca/player_live_api.php`
 >**또한 비밀번호가 설정된 방송의 경우 이때 "pwd"파라메터로 비밀번호를 전달해야 합니다.**
 
 
-### 8.2. 스트림 URL 요청
+### 9.2. 스트림 URL 요청
 ```js
 GET `https://livestream-manager.sooplive.co.kr/broad_stream_assign.html`
 ```
@@ -701,7 +709,7 @@ CDN 변수가 "gcp_cdn"일 경우 헤더의 Origin과 Referer를 SOOP의 글로�
 
 이 응답에서 얻은 view_url로 플레이리스트를 요청합니다.
 
-### 8.3. 플레이리스트 요청
+### 9.3. 플레이리스트 요청
 
 ```js
 GET view_url
@@ -723,7 +731,7 @@ GET view_url
 최초로 요청된 플레이리스트는 영상 처리 중임을 표시하는 preloading 세그먼트를 포함합니다.
 세그먼트의 URI가 "preloading"을 포함하는지 여부를 검사하여 필터링할 수 있습니다.
 
-## 9. VOD 정보
+## 10. VOD 정보
 ```js
 POST `https://api.m.sooplive.co.kr/station/video/a/view` 
 ```
@@ -731,7 +739,7 @@ POST `https://api.m.sooplive.co.kr/station/video/a/view`
 VOD의 각종 정보와 HLS 플레이리스트 파일을 얻을 수 있는 API입니다.
 
 
-### 9.1. BODY
+### 10.1. BODY
 
 |   KEY    |    VALUE     |  TYPE  | NECESSARY |
 | :------: | :----------: | :----: | :-------: |
@@ -739,7 +747,7 @@ VOD의 각종 정보와 HLS 플레이리스트 파일을 얻을 수 있는 API�
 
 VOD 고유번호는 VOD 플레이어 URL의 마지막 요소 또는 검색 API의 응답에서 얻어낼 수 있습니다.
 
-### 9.2. RESPONSE
+### 10.2. RESPONSE
 
 해당 API의 응답은 크게 "result" 필드와 "data" 객체로 구성됩니다.  
 "data"필드에 모든 정보가 포함되어 있으므로 "data"객체의 주요 필드만 다루겠습니다.
@@ -929,11 +937,11 @@ VOD 고유번호는 VOD 플레이어 URL의 마지막 요소 또는 검색 API�
 </div>
 </details>
 
-### 9.3. DATATYPE
+### 10.3. DATATYPE
 
 >VOD 객체 관련 정보들은 이후 분리하여 이동할 예정입니다.
 
-#### 9.3.1. FileType
+#### 10.3.1. FileType
 
 |   TYPE   |   VALUE   |
 | :------: | :-------: |
@@ -944,7 +952,7 @@ VOD 고유번호는 VOD 플레이어 URL의 마지막 요소 또는 검색 API�
 |  CATCH   |   캐치    |
 | PLAYLIST | 재생목록  |
 
-#### 9.3.2. VOD Chapter Object
+#### 10.3.2. VOD Chapter Object
 
 |     KEY      |               VALUE               |   TYPE   |
 | :----------: | :-------------------------------: | :------: |
@@ -1024,7 +1032,7 @@ VOD 고유번호는 VOD 플레이어 URL의 마지막 요소 또는 검색 API�
 </div>
 </details>
 
-#### 9.3.3. 구독 퍼스너콘 객체 \#2
+#### 10.3.3. 구독 퍼스너콘 객체 \#2
 
 ```js
 {
@@ -1033,7 +1041,7 @@ VOD 고유번호는 VOD 플레이어 URL의 마지막 요소 또는 검색 API�
 },
 ```
 
-## 10. 통합 검색
+## 11. 통합 검색
 
 통합 검색 API는 숲의 탐색 탭을 통해 접근할 수 있는 API입니다.  
 해당 요청의 모드를 변경하여 카테고리, 생방송, VOD 등 덜 정확하지만 다양한 정보를 검색할 수 있습니다.
@@ -1042,7 +1050,7 @@ VOD 고유번호는 VOD 플레이어 URL의 마지막 요소 또는 검색 API�
 GET `https://sch.sooplive.co.kr/api.php`
 ```
 
-### 10.1. 공통 파라메터
+### 11.1. 공통 파라메터
 
 통합 검색 API는 각 검색 모드에 따라 사용 가능한 파라메터가 달라지니, 이하의 모드별 추가 파라메터를 참고하시기 바랍니다.
 
@@ -1097,9 +1105,9 @@ GET `https://sch.sooplive.co.kr/api.php`
 </div>
 </details>
 
-### 10.2. 라이브 검색
+### 11.2. 라이브 검색
 
-#### 10.2.1. 추가 파라메터
+#### 11.2.1. 추가 파라메터
 
 |    KEY     |         VALUE          |      TYPE      | NECESSARY |
 | :--------: | :--------------------: | :------------: | :-------: |
@@ -1108,7 +1116,7 @@ GET `https://sch.sooplive.co.kr/api.php`
 
 > 두 파라메터 모두 응답 데이터에는 영향을 미치지 않았지만 "isMobile" 파라메터는 값에 따라 응답 구조를 바꿀 수 있습니다.
 
-#### 10.2.2. RESPONSE
+#### 11.2.2. RESPONSE
 
 응답의 "REAL_BROAD"필드로 생방송 정보 객체의 배열이 전달됩니다.
 
@@ -1246,9 +1254,9 @@ GET `https://sch.sooplive.co.kr/api.php`
 </div>
 </details>
 
-### 10.3. VOD 검색
+### 11.3. VOD 검색
 
-#### 10.3.1. 추가 파라메터
+#### 11.3.1. 추가 파라메터
 
 |     KEY     |       VALUE       |  TYPE  | NECESSARY |         DEPENDANCY         |
 | :---------: | :---------------: | :----: | :-------: | :------------------------: |
@@ -1289,7 +1297,7 @@ GET `https://sch.sooplive.co.kr/api.php`
 </div>
 </details>
 
-#### 10.3.2. RESPONSE
+#### 11.3.2. RESPONSE
 
 응답의 "DATA" 필드로 VOD 정보 객체의 배열이 전달됩니다.
 
@@ -1610,9 +1618,9 @@ GET `https://sch.sooplive.co.kr/api.php`
 </div>
 </details>
 
-### 10.4. 게시글 검색
+### 11.4. 게시글 검색
 
-#### 10.4.1. 추가 파라메터
+#### 11.4.1. 추가 파라메터
 
 |  KEY   |   VALUE   |  TYPE  | NECESSARY |
 | :----: | :-------: | :----: | :-------: |
@@ -1633,7 +1641,7 @@ GET `https://sch.sooplive.co.kr/api.php`
 </div>
 </details>
 
-#### 10.4.2. RESPONSE
+#### 11.4.2. RESPONSE
 
 응답의 "DATA" 필드로 게시물 정보 객체의 배열이 전달됩니다.
 
@@ -1693,11 +1701,11 @@ GET `https://sch.sooplive.co.kr/api.php`
 </div>
 </details>
 
-### 10.5. 스트리머 검색
+### 11.5. 스트리머 검색
 
 스트리머 검색은 추가 파라메터를 필요로 하지 않습니다.
 
-#### 10.5.1. RESPONSE
+#### 11.5.1. RESPONSE
 
 |        KEY        |               VALUE               |   TYPE   |
 | :---------------: | :-------------------------------: | :------: |
@@ -1776,9 +1784,9 @@ GET `https://sch.sooplive.co.kr/api.php`
 </div>
 </details>
 
-### 10.6. 카테고리 탐색
+### 11.6. 카테고리 탐색
 
-#### 10.6.1. 추가 파라메터
+#### 11.6.1. 추가 파라메터
 
 |    KEY     |           VALUE           |  TYPE  | NECESSARY |
 | :--------: | :-----------------------: | :----: | :-------: |
@@ -1787,7 +1795,7 @@ GET `https://sch.sooplive.co.kr/api.php`
 
 카테고리 탐색 시에는 "szKeyword"가 주어지지 않아도 정상적으로 검색이 가능합니다.
 
-#### 10.6.2. RESPONSE
+#### 11.6.2. RESPONSE
 
 "data"객체의 "list"필드로 카테고리 정보 객체의 배열을 반환합니다.
 
@@ -1835,7 +1843,7 @@ GET `https://sch.sooplive.co.kr/api.php`
 </div>
 </details>
 
-## 11. 채널에서 검색
+## 12. 채널에서 검색
 
 채널 검색 API는 스트리머의 채널 페이지에서 상단의 "채널 검색" 필드를 통해 검색할 때 호출되는 API입니다.  
 특정 스트리머의 컨텐츠를 검색할 때 유용하게 사용됩니다.
@@ -1843,10 +1851,10 @@ GET `https://sch.sooplive.co.kr/api.php`
 스트리머의 생방송에서 생성된 클립과 캐치 또한 검색할 수 있으며, 제목, 내용, 작성자 등 어떤 필드를 대상으로 검색할지 또한 지정할 수 있습니다.
 
 
-## 12. 클립
+## 13. 클립
 
 TBU
 
-## 13. 시그니처 이모티콘
+## 14. 시그니처 이모티콘
 
 TBU
