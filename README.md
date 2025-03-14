@@ -85,8 +85,8 @@
 
 ```js
 {
-    "User-Agent" : "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
-    "Origin": "https://play.sooplive.co.kr"
+    "User-Agent" : "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    "Origin": "https://play.sooplive.co.kr",
     "Referer": "https://play.sooplive.co.kr/"
 }
 ```
@@ -95,8 +95,8 @@
 
 ```js
 {
-    "User-Agent" : "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
-    "Origin": "https://live.sooplive.co.kr"
+    "User-Agent" : "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    "Origin": "https://live.sooplive.co.kr",
     "Referer": "https://live.sooplive.co.kr/"
 }
 ```
@@ -677,6 +677,7 @@ POST `https://live.sooplive.co.kr/afreeca/player_live_api.php`
 >**이때, "quality"파라메터를 전달해야만 원하는 품질의 플레이리스트를 받을 수 있습니다.**  
 > - "quality" 파라메터에 "master"를 전달하면 마스터 플레이리스트를 받을 수 있습니다.  
 > - 한국에서 요청을 진행할 경우 마스터 플레이리스트는 360p,540p 스트림만을 포함합니다.
+> 
 >**또한 비밀번호가 설정된 방송의 경우 이때 "pwd"파라메터로 비밀번호를 전달해야 합니다.**
 
 
